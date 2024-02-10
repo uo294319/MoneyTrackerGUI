@@ -20,16 +20,27 @@
       - Help
         - Documentation (link to github docs)
         - About (link to github readme)
-   2. Different layouts (Main -Tabbed pannel - All/Expenses/Income)
+  
+   2. Different layouts
+      - Both JFrame and mainPanel use AbsoluteLayout.
+         > ![NOTE]
+         > Resize is not allowed as it breaks the distribution of GUI components.
+
    3. Actions
-      - View -> Modifies entries shown
+      - View modifies entries shown
+        - Wallet synchronized with the tabbed pannel.
+        > ![Caution]
+        > View/Period is not implemented.
+    
    4. Keyboard restrictions
       - Only allows alphanumeric values in description.
       - Only allows +/- and digits in mov.
       - Only allows 20 char in description.
+  
    5. List inside of tabbed pannel (all/expenses/income)
       - Modified with buttons left (Add, delete, Mod)
       - Also with main menu -> File -> add entry, delete all entries 
+
 2. Multiple windows
    1. Main -> Secondary
       - Show all button shows the complete list with income/expenses from main window.
@@ -38,10 +49,14 @@
    3. Secondary -> Secondary
       - Add entries secondary window modifies Show all secondary window
    4. Initial window -> Welcome window
+
+
 3. Dialogs
    1. Use JOptionPane for confirmation on "delete entry" and "delete all" options.
    2. Use file chooser for importing and exporting csv.
    3. Mod. entry button opens a custom dialog (allows only one entry).
+
+
 4. Graphics (**some charts window**)
    1. Custom Graphics. Custom Drawing:
       Create a custom component (e.g., a chart) to visualize financial data.
@@ -55,8 +70,8 @@
 
 ### Window, components & events
 - [x] (1.1) A Menu bar including menu items and sub-menus
-- [ ] (1.2) Components on a layout which is not the default one.
-- [ ] (1.3) Events: Components are modified when the user does an action.
+- [x] (1.2) Components on a layout which is not the default one.
+- [x] (1.3) Events: Components are modified when the user does an action.
 - [ ] (1.4) Keyboard events
 - [ ] (1.5) Update components with a variable number of elements.
 
@@ -82,20 +97,26 @@ windows
 ## TODO list
 
 - Add funtionality to menu bar
-    - File
-        - [ ] Open
-        - [ ] Open sample
-        - [ ] Import from csv
-        - [ ] Export in csv
-        - [ ] Close
-    - Edit
-        - [ ] Add entries
-        - [ ] Clear all entries
-    - View
-        - [ ] Wallet -> Radial (Total, Expenses, Income)
-        - [ ] Period -> Radial (All, Anual, Month, Custom)
-        - [ ] Show date (Checkbox)
-        - [ ] Show tag (Checkbox)
-    - Help
-        - [ ] Documentation (link to github docs)
-        - [ ] About (link to github readme)
+  - File
+    - [ ] Open
+    - [ ] Open sample
+    - [ ] Import from csv
+    - [ ] Export in csv
+    - [ ] Close
+  - Edit
+    - [ ] Add entries
+    - [ ] Clear all entries
+  - View
+    - [x] Wallet -> Radial (Total, Expenses, Income)
+    - [ ] Period -> Radial (All, Anual, Month, Custom)
+    - [ ] Show date (Checkbox)
+    - [ ] Show tag (Checkbox)
+  - Help
+    - [ ] Documentation (link to github docs)
+    - [ ] About (link to github readme)
+  
+- Add functionality to buttons
+  - [ ] Add entries
+  - [ ] Delete entry
+  - [ ] Modify entry
+  - [ ] Show All

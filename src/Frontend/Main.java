@@ -59,8 +59,8 @@ public class Main extends javax.swing.JFrame {
         menu_view = new javax.swing.JMenu();
         menu_view_wallet = new javax.swing.JMenu();
         menu_view_wallet_total = new javax.swing.JRadioButtonMenuItem();
-        menu_view_wallet_expenses = new javax.swing.JRadioButtonMenuItem();
         menu_view_wallet_income = new javax.swing.JRadioButtonMenuItem();
+        menu_view_wallet_expenses = new javax.swing.JRadioButtonMenuItem();
         menu_view_period = new javax.swing.JMenu();
         menu_view_period_all = new javax.swing.JRadioButtonMenuItem();
         menu_view_period_anual = new javax.swing.JRadioButtonMenuItem();
@@ -88,6 +88,11 @@ public class Main extends javax.swing.JFrame {
         main_tabbedPanel_wallet.setOpaque(true);
         main_tabbedPanel_wallet.setPreferredSize(new java.awt.Dimension(250, 300));
         main_tabbedPanel_wallet.setRequestFocusEnabled(false);
+        main_tabbedPanel_wallet.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                main_tabbedPanel_walletStateChanged(evt);
+            }
+        });
 
         wallet_total_scroll.setBackground(new java.awt.Color(187, 195, 164));
 
@@ -313,15 +318,30 @@ public class Main extends javax.swing.JFrame {
         menu_view_wallet_total.setSelected(true);
         menu_view_wallet_total.setText("Total");
         menu_view_wallet_total.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        menu_view_wallet_total.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_view_wallet_totalActionPerformed(evt);
+            }
+        });
         menu_view_wallet.add(menu_view_wallet_total);
-
-        wallet.add(menu_view_wallet_expenses);
-        menu_view_wallet_expenses.setText("Expenses");
-        menu_view_wallet.add(menu_view_wallet_expenses);
 
         wallet.add(menu_view_wallet_income);
         menu_view_wallet_income.setText("Income");
+        menu_view_wallet_income.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_view_wallet_incomeActionPerformed(evt);
+            }
+        });
         menu_view_wallet.add(menu_view_wallet_income);
+
+        wallet.add(menu_view_wallet_expenses);
+        menu_view_wallet_expenses.setText("Expenses");
+        menu_view_wallet_expenses.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_view_wallet_expensesActionPerformed(evt);
+            }
+        });
+        menu_view_wallet.add(menu_view_wallet_expenses);
 
         menu_view.add(menu_view_wallet);
 
@@ -381,7 +401,7 @@ public class Main extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void menu_file_importActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_file_importActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_menu_file_importActionPerformed
@@ -401,10 +421,44 @@ public class Main extends javax.swing.JFrame {
     private void menu_file_closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_file_closeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_menu_file_closeActionPerformed
-
+    
     private void menu_edit_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_edit_addActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_menu_edit_addActionPerformed
+
+    private void menu_view_wallet_totalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_view_wallet_totalActionPerformed
+        // TODO add your handling code here:
+        this.main_tabbedPanel_wallet.setSelectedComponent(
+                this.wallet_total_scroll
+        );
+    }//GEN-LAST:event_menu_view_wallet_totalActionPerformed
+
+    private void menu_view_wallet_expensesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_view_wallet_expensesActionPerformed
+        // TODO add your handling code here:
+        this.main_tabbedPanel_wallet.setSelectedComponent(
+                this.wallet_expenses_scroll
+        );
+    }//GEN-LAST:event_menu_view_wallet_expensesActionPerformed
+
+    private void menu_view_wallet_incomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_view_wallet_incomeActionPerformed
+        // TODO add your handling code here:
+        this.main_tabbedPanel_wallet.setSelectedComponent(
+                this.wallet_income_scroll
+        );
+    }//GEN-LAST:event_menu_view_wallet_incomeActionPerformed
+
+    private void main_tabbedPanel_walletStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_main_tabbedPanel_walletStateChanged
+
+        // 0 = Total, 1 = Income, 2 = Expenses
+        switch(this.main_tabbedPanel_wallet.getSelectedIndex())
+        {
+            case -1 -> System.err.print("Error. No tab selected");
+            case 0 -> this.menu_view_wallet_total.setSelected(true);
+            case 1 -> this.menu_view_wallet_income.setSelected(true);
+            case 2 -> this.menu_view_wallet_expenses.setSelected(true);
+            default -> System.err.print("Error. Invalid tab selected");
+        }
+    }//GEN-LAST:event_main_tabbedPanel_walletStateChanged
 
     /**
      * @param args the command line arguments
