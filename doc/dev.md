@@ -24,15 +24,15 @@
    2. Different layouts
       - Both JFrame and mainPanel use AbsoluteLayout.
 
-> ![NOTE]
-> Resize is not allowed as it breaks the distribution of GUI components.
+   > [!NOTE]
+   > Resize is not allowed as it breaks the distribution of GUI components.
 
    3. Actions
       - View modifies entries shown
         - Wallet synchronized with the tabbed pannel.
 
-> ![Caution]
-> View/Period is not implemented.
+   > [!Caution]
+   > View/Period is not implemented.
     
    4. Keyboard restrictions
       - Only allows alphanumeric values in description.
