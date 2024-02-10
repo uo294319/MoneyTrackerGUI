@@ -13,8 +13,10 @@
         - Add entries
         - Clear all entries
       - View
-        - Radial button (All, Expenses, Income)
+        - Wallet -> Radial button (All, Expenses, Income)
         - Period -> Radial button (Total, Anual, Month, Custom)
+        - Show date (Checkbox)
+        - Show tag (Checkbox)
       - Help
         - Documentation (link to github docs)
         - About (link to github readme)
@@ -52,7 +54,7 @@
 ## Requirements Completed
 
 ### Window, components & events
-- [ ] (1.1) A Menu bar including menu items and sub-menus
+- [x] (1.1) A Menu bar including menu items and sub-menus
 - [ ] (1.2) Components on a layout which is not the default one.
 - [ ] (1.3) Events: Components are modified when the user does an action.
 - [ ] (1.4) Keyboard events
