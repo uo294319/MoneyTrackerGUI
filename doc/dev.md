@@ -23,14 +23,16 @@
   
    2. Different layouts
       - Both JFrame and mainPanel use AbsoluteLayout.
-         > ![NOTE]
-         > Resize is not allowed as it breaks the distribution of GUI components.
+
+> ![NOTE]
+> Resize is not allowed as it breaks the distribution of GUI components.
 
    3. Actions
       - View modifies entries shown
         - Wallet synchronized with the tabbed pannel.
-        > ![Caution]
-        > View/Period is not implemented.
+
+> ![Caution]
+> View/Period is not implemented.
     
    4. Keyboard restrictions
       - Only allows alphanumeric values in description.
@@ -41,7 +43,7 @@
       - Modified with buttons left (Add, delete, Mod)
       - Also with main menu -> File -> add entry, delete all entries 
 
-2. Multiple windows
+1. Multiple windows
    1. Main -> Secondary
       - Show all button shows the complete list with income/expenses from main window.
    2. Secondary -> Main
