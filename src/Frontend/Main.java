@@ -1,4 +1,4 @@
-package GUI;
+package Frontend;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -16,6 +16,7 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -27,21 +28,216 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        period = new javax.swing.ButtonGroup();
+        wallet = new javax.swing.ButtonGroup();
+        mainPanel = new javax.swing.JPanel();
+        menu = new javax.swing.JMenuBar();
+        menu_file = new javax.swing.JMenu();
+        menu_file_open = new javax.swing.JMenuItem();
+        menu_file_sample = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        menu_file_import = new javax.swing.JMenuItem();
+        menu_file_export = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        menu_file_close = new javax.swing.JMenuItem();
+        menu_edit = new javax.swing.JMenu();
+        menu_edit_add = new javax.swing.JMenuItem();
+        menu_edit_clear = new javax.swing.JMenuItem();
+        menu_view = new javax.swing.JMenu();
+        menu_view_wallet = new javax.swing.JMenu();
+        menu_view_wallet_total = new javax.swing.JRadioButtonMenuItem();
+        menu_view_wallet_expenses = new javax.swing.JRadioButtonMenuItem();
+        menu_view_wallet_income = new javax.swing.JRadioButtonMenuItem();
+        menu_view_period = new javax.swing.JMenu();
+        menu_view_period_all = new javax.swing.JRadioButtonMenuItem();
+        menu_view_period_anual = new javax.swing.JRadioButtonMenuItem();
+        menu_view_period_month = new javax.swing.JRadioButtonMenuItem();
+        menu_view_period_custom = new javax.swing.JRadioButtonMenuItem();
+        jSeparator3 = new javax.swing.JPopupMenu.Separator();
+        menu_view_date = new javax.swing.JCheckBoxMenuItem();
+        menu_view_tag = new javax.swing.JCheckBoxMenuItem();
+        menu_help = new javax.swing.JMenu();
+        menu_help_doc = new javax.swing.JMenuItem();
+        menu_help_about = new javax.swing.JMenuItem();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
+        mainPanel.setLayout(mainPanelLayout);
+        mainPanelLayout.setHorizontalGroup(
+            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        mainPanelLayout.setVerticalGroup(
+            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 277, Short.MAX_VALUE)
+        );
+
+        menu_file.setText("File");
+
+        menu_file_open.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        menu_file_open.setText("Open");
+        menu_file_open.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_file_openActionPerformed(evt);
+            }
+        });
+        menu_file.add(menu_file_open);
+
+        menu_file_sample.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        menu_file_sample.setText("Open sample");
+        menu_file_sample.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_file_sampleActionPerformed(evt);
+            }
+        });
+        menu_file.add(menu_file_sample);
+        menu_file.add(jSeparator1);
+
+        menu_file_import.setText("Import csv");
+        menu_file_import.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_file_importActionPerformed(evt);
+            }
+        });
+        menu_file.add(menu_file_import);
+
+        menu_file_export.setText("Export csv");
+        menu_file_export.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_file_exportActionPerformed(evt);
+            }
+        });
+        menu_file.add(menu_file_export);
+        menu_file.add(jSeparator2);
+
+        menu_file_close.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        menu_file_close.setText("Close");
+        menu_file_close.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_file_closeActionPerformed(evt);
+            }
+        });
+        menu_file.add(menu_file_close);
+
+        menu.add(menu_file);
+
+        menu_edit.setText("Edit");
+
+        menu_edit_add.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        menu_edit_add.setText("Add entries");
+        menu_edit_add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_edit_addActionPerformed(evt);
+            }
+        });
+        menu_edit.add(menu_edit_add);
+
+        menu_edit_clear.setText("Clear all entries");
+        menu_edit.add(menu_edit_clear);
+
+        menu.add(menu_edit);
+
+        menu_view.setText("View");
+
+        menu_view_wallet.setText("Wallet");
+
+        wallet.add(menu_view_wallet_total);
+        menu_view_wallet_total.setSelected(true);
+        menu_view_wallet_total.setText("Total");
+        menu_view_wallet.add(menu_view_wallet_total);
+
+        wallet.add(menu_view_wallet_expenses);
+        menu_view_wallet_expenses.setText("Expenses");
+        menu_view_wallet.add(menu_view_wallet_expenses);
+
+        wallet.add(menu_view_wallet_income);
+        menu_view_wallet_income.setText("Income");
+        menu_view_wallet.add(menu_view_wallet_income);
+
+        menu_view.add(menu_view_wallet);
+
+        menu_view_period.setText("Period");
+
+        period.add(menu_view_period_all);
+        menu_view_period_all.setSelected(true);
+        menu_view_period_all.setText("All");
+        menu_view_period.add(menu_view_period_all);
+
+        period.add(menu_view_period_anual);
+        menu_view_period_anual.setText("Anual");
+        menu_view_period.add(menu_view_period_anual);
+
+        period.add(menu_view_period_month);
+        menu_view_period_month.setText("Month");
+        menu_view_period.add(menu_view_period_month);
+
+        period.add(menu_view_period_custom);
+        menu_view_period_custom.setText("Custom");
+        menu_view_period.add(menu_view_period_custom);
+
+        menu_view.add(menu_view_period);
+        menu_view.add(jSeparator3);
+
+        menu_view_date.setSelected(true);
+        menu_view_date.setText("Show date");
+        menu_view.add(menu_view_date);
+
+        menu_view_tag.setSelected(true);
+        menu_view_tag.setText("Show tag");
+        menu_view.add(menu_view_tag);
+
+        menu.add(menu_view);
+
+        menu_help.setText("Help");
+
+        menu_help_doc.setText("Documentation");
+        menu_help.add(menu_help_doc);
+
+        menu_help_about.setText("About");
+        menu_help.add(menu_help_about);
+
+        menu.add(menu_help);
+
+        setJMenuBar(menu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void menu_file_importActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_file_importActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menu_file_importActionPerformed
+
+    private void menu_file_openActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_file_openActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menu_file_openActionPerformed
+
+    private void menu_file_sampleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_file_sampleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menu_file_sampleActionPerformed
+
+    private void menu_file_exportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_file_exportActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menu_file_exportActionPerformed
+
+    private void menu_file_closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_file_closeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menu_file_closeActionPerformed
+
+    private void menu_edit_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_edit_addActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menu_edit_addActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +275,36 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JPopupMenu.Separator jSeparator3;
+    private javax.swing.JPanel mainPanel;
+    private javax.swing.JMenuBar menu;
+    private javax.swing.JMenu menu_edit;
+    private javax.swing.JMenuItem menu_edit_add;
+    private javax.swing.JMenuItem menu_edit_clear;
+    private javax.swing.JMenu menu_file;
+    private javax.swing.JMenuItem menu_file_close;
+    private javax.swing.JMenuItem menu_file_export;
+    private javax.swing.JMenuItem menu_file_import;
+    private javax.swing.JMenuItem menu_file_open;
+    private javax.swing.JMenuItem menu_file_sample;
+    private javax.swing.JMenu menu_help;
+    private javax.swing.JMenuItem menu_help_about;
+    private javax.swing.JMenuItem menu_help_doc;
+    private javax.swing.JMenu menu_view;
+    private javax.swing.JCheckBoxMenuItem menu_view_date;
+    private javax.swing.JMenu menu_view_period;
+    private javax.swing.JRadioButtonMenuItem menu_view_period_all;
+    private javax.swing.JRadioButtonMenuItem menu_view_period_anual;
+    private javax.swing.JRadioButtonMenuItem menu_view_period_custom;
+    private javax.swing.JRadioButtonMenuItem menu_view_period_month;
+    private javax.swing.JCheckBoxMenuItem menu_view_tag;
+    private javax.swing.JMenu menu_view_wallet;
+    private javax.swing.JRadioButtonMenuItem menu_view_wallet_expenses;
+    private javax.swing.JRadioButtonMenuItem menu_view_wallet_income;
+    private javax.swing.JRadioButtonMenuItem menu_view_wallet_total;
+    private javax.swing.ButtonGroup period;
+    private javax.swing.ButtonGroup wallet;
     // End of variables declaration//GEN-END:variables
 }
