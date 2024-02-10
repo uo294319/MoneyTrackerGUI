@@ -1,8 +1,8 @@
 # Money Tracker
 
 ## Description:
-Simple application that lets users upload an image and apply different filters to it. Users can choose from a variety of filters, adjust their intensity, and save the modified image.
-
+Money Tracker is an offline desktop app for managing personal finances.
+It offers a simple interface and allows you to categorize transactions.
 
 ## GUI ideas
 1. Window, components & events
