@@ -25,6 +25,8 @@ public class Main extends javax.swing.JFrame {
         TableUtils.configTable(this.wallet_total_table);
         TableUtils.configTable(this.wallet_income_table);
         TableUtils.configTable(this.wallet_expenses_table);
+        
+        this.showAllWindow = new ShowAll(this);
 
     }
     
@@ -49,6 +51,7 @@ public class Main extends javax.swing.JFrame {
         wallet_expenses_scroll = new javax.swing.JScrollPane();
         wallet_expenses_table = new javax.swing.JTable();
         main_showAll = new javax.swing.JButton();
+        main_eurSymbol = new javax.swing.JLabel();
         main_total = new javax.swing.JLabel();
         mainPanel_disclaimer = new javax.swing.JTextArea();
         main_addEntries = new javax.swing.JButton();
@@ -122,7 +125,13 @@ public class Main extends javax.swing.JFrame {
             }
         });
         wallet_total_table.setDoubleBuffered(true);
+        wallet_total_table.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         wallet_total_table.getTableHeader().setReorderingAllowed(false);
+        wallet_total_table.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                wallet_total_tablePropertyChange(evt);
+            }
+        });
         wallet_total_scroll.setViewportView(wallet_total_table);
 
         main_tabbedPanel_wallet.addTab("Total", wallet_total_scroll);
@@ -154,6 +163,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
         wallet_income_table.setDoubleBuffered(true);
+        wallet_income_table.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         wallet_income_table.getTableHeader().setReorderingAllowed(false);
         wallet_income_scroll.setViewportView(wallet_income_table);
 
@@ -184,6 +194,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
         wallet_expenses_table.setDoubleBuffered(true);
+        wallet_expenses_table.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         wallet_expenses_table.getTableHeader().setReorderingAllowed(false);
         wallet_expenses_scroll.setViewportView(wallet_expenses_table);
 
@@ -196,10 +207,15 @@ public class Main extends javax.swing.JFrame {
         main_showAll.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         mainPanel.add(main_showAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 312, 100, 32));
 
-        main_total.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
-        main_total.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        main_total.setText("$$$$$$$");
-        mainPanel.add(main_total, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 232, -1));
+        main_eurSymbol.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        main_eurSymbol.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        main_eurSymbol.setText(" €");
+        mainPanel.add(main_eurSymbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, 50, -1));
+
+        main_total.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        main_total.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        main_total.setText("0");
+        mainPanel.add(main_total, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 190, -1));
 
         mainPanel_disclaimer.setEditable(false);
         mainPanel_disclaimer.setBackground(new java.awt.Color(198, 220, 186));
@@ -479,6 +495,7 @@ public class Main extends javax.swing.JFrame {
 
     private void menu_edit_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_edit_clearActionPerformed
         // TODO add your handling code here:
+        this.clearTables();
     }//GEN-LAST:event_menu_edit_clearActionPerformed
 
     private void menu_help_docActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_help_docActionPerformed
@@ -488,6 +505,12 @@ public class Main extends javax.swing.JFrame {
     private void menu_help_aboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_help_aboutActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_menu_help_aboutActionPerformed
+
+    private void wallet_total_tablePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_wallet_total_tablePropertyChange
+        // TODO add your handling code here:
+        //evt.getOldValue();
+        //this.wallet_total_table.set
+    }//GEN-LAST:event_wallet_total_tablePropertyChange
 
     /**
      * @param args the command line arguments
@@ -540,6 +563,8 @@ public class Main extends javax.swing.JFrame {
                 TableUtils.addEntryToTable(this.wallet_expenses_table, quantity, tag);
             else
                 TableUtils.addEntryToTable(this.wallet_income_table, quantity, tag);
+            
+            this.main_total.setText(String.valueOf(this.getAbsoluteTotal()));
         }
 
     }
@@ -550,46 +575,49 @@ public class Main extends javax.swing.JFrame {
         TableUtils.cleanTable(this.wallet_expenses_table);
     } 
 
+    
+    private ShowAll showAllWindow;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JPopupMenu.Separator jSeparator1;
-    private javax.swing.JPopupMenu.Separator jSeparator2;
-    private javax.swing.JPopupMenu.Separator jSeparator3;
-    private javax.swing.JPanel mainPanel;
-    private javax.swing.JTextArea mainPanel_disclaimer;
-    private javax.swing.JButton main_addEntries;
-    private javax.swing.JButton main_deleteEntry;
-    private javax.swing.JButton main_modEntry;
-    private javax.swing.JButton main_showAll;
-    private javax.swing.JTabbedPane main_tabbedPanel_wallet;
-    private javax.swing.JLabel main_total;
-    private javax.swing.JMenuBar menu;
-    private javax.swing.JMenu menu_edit;
-    private javax.swing.JMenuItem menu_edit_add;
-    private javax.swing.JCheckBoxMenuItem menu_edit_auto;
-    private javax.swing.JMenuItem menu_edit_clear;
-    private javax.swing.JMenu menu_file;
-    private javax.swing.JMenuItem menu_file_export;
-    private javax.swing.JMenuItem menu_file_import;
-    private javax.swing.JMenuItem menu_file_open;
-    private javax.swing.JMenuItem menu_file_quit;
-    private javax.swing.JMenuItem menu_file_sample;
-    private javax.swing.JMenu menu_help;
-    private javax.swing.JMenuItem menu_help_about;
-    private javax.swing.JMenuItem menu_help_doc;
-    private javax.swing.JMenu menu_view;
-    private javax.swing.JMenu menu_view_wallet;
-    private javax.swing.JRadioButtonMenuItem menu_view_wallet_expenses;
-    private javax.swing.JRadioButtonMenuItem menu_view_wallet_income;
-    private javax.swing.JRadioButtonMenuItem menu_view_wallet_total;
-    private javax.swing.ButtonGroup period;
-    private javax.swing.ButtonGroup wallet;
-    private javax.swing.JScrollPane wallet_expenses_scroll;
-    private javax.swing.JTable wallet_expenses_table;
-    private javax.swing.JScrollPane wallet_income_scroll;
-    private javax.swing.JTable wallet_income_table;
-    private javax.swing.JScrollPane wallet_total_scroll;
-    private javax.swing.JTable wallet_total_table;
+    protected javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
+    protected javax.swing.JMenuItem jMenuItem1;
+    protected javax.swing.JPopupMenu.Separator jSeparator1;
+    protected javax.swing.JPopupMenu.Separator jSeparator2;
+    protected javax.swing.JPopupMenu.Separator jSeparator3;
+    protected javax.swing.JPanel mainPanel;
+    protected javax.swing.JTextArea mainPanel_disclaimer;
+    protected javax.swing.JButton main_addEntries;
+    protected javax.swing.JButton main_deleteEntry;
+    protected javax.swing.JLabel main_eurSymbol;
+    protected javax.swing.JButton main_modEntry;
+    protected javax.swing.JButton main_showAll;
+    protected javax.swing.JTabbedPane main_tabbedPanel_wallet;
+    protected javax.swing.JLabel main_total;
+    protected javax.swing.JMenuBar menu;
+    protected javax.swing.JMenu menu_edit;
+    protected javax.swing.JMenuItem menu_edit_add;
+    protected javax.swing.JCheckBoxMenuItem menu_edit_auto;
+    protected javax.swing.JMenuItem menu_edit_clear;
+    protected javax.swing.JMenu menu_file;
+    protected javax.swing.JMenuItem menu_file_export;
+    protected javax.swing.JMenuItem menu_file_import;
+    protected javax.swing.JMenuItem menu_file_open;
+    protected javax.swing.JMenuItem menu_file_quit;
+    protected javax.swing.JMenuItem menu_file_sample;
+    protected javax.swing.JMenu menu_help;
+    protected javax.swing.JMenuItem menu_help_about;
+    protected javax.swing.JMenuItem menu_help_doc;
+    protected javax.swing.JMenu menu_view;
+    protected javax.swing.JMenu menu_view_wallet;
+    protected javax.swing.JRadioButtonMenuItem menu_view_wallet_expenses;
+    protected javax.swing.JRadioButtonMenuItem menu_view_wallet_income;
+    protected javax.swing.JRadioButtonMenuItem menu_view_wallet_total;
+    protected javax.swing.ButtonGroup period;
+    protected javax.swing.ButtonGroup wallet;
+    protected javax.swing.JScrollPane wallet_expenses_scroll;
+    protected javax.swing.JTable wallet_expenses_table;
+    protected javax.swing.JScrollPane wallet_income_scroll;
+    protected javax.swing.JTable wallet_income_table;
+    protected javax.swing.JScrollPane wallet_total_scroll;
+    protected javax.swing.JTable wallet_total_table;
     // End of variables declaration//GEN-END:variables
 }

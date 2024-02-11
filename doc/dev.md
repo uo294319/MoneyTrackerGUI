@@ -42,11 +42,11 @@
 
 1. Multiple windows
    1. Main -> Secondary
-      - Show all button shows the complete list with income/expenses from main window.
+      - "Show all" button shows the complete list with income/expenses from main window.
    2. Secondary -> Main
       - Add entries button opens secondary window (allows multiple entries)
    3. Secondary -> Secondary
-      - Add entries secondary window modifies Show all secondary window
+      - "Modify entries" secondary window modifies Show all secondary window
    4. Initial window -> Welcome window
 
 

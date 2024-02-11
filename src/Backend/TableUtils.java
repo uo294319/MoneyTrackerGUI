@@ -16,14 +16,19 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TableUtils {
     
-    static final String[] COLUMN_NAMES = {"Quantity", "Total", "Tag"};
-    static final int  COLUMN_QUANTITY = 0;
-    static final int  COLUMN_TOTAL = 1;
+    static final int  COLUMN_QUANTITY = 1;
+    static final int  COLUMN_TOTAL = 0;
     static final int  COLUMN_TAG = 2;
     
     
     public static void configTable(javax.swing.JTable table) {
-        table.setModel(new DefaultTableModel(COLUMN_NAMES, 0));
+        
+        String[] tmp = new String[3];
+        tmp[COLUMN_QUANTITY] = "Quantity";
+        tmp[COLUMN_TOTAL] = "Total";
+        tmp[COLUMN_TAG] = "Tag";
+        
+        table.setModel(new DefaultTableModel(tmp, 0));
     }
     
     public static void cleanTable(javax.swing.JTable table) {
@@ -57,13 +62,11 @@ public class TableUtils {
     
     public static void addEntryToTable(javax.swing.JTable table, double quantity, String tag) {
         
-        Object[] tmp = {
-            
-            formatQuantity(quantity),
-            formatQuantity(getRelativeTotal(table) + quantity),
-            tag
-        };
+        Object[] tmp = new Object[3];
+        tmp[COLUMN_TOTAL] = formatQuantity(getRelativeTotal(table) + quantity);
+        tmp[COLUMN_QUANTITY] = formatQuantity(quantity);
+        tmp[COLUMN_TAG] = tag;
         
         ((DefaultTableModel) table.getModel()).insertRow(0, tmp);
-    }
+    }    
 }
