@@ -42,8 +42,10 @@
 
 1. Multiple windows
    1. Main -> Secondary
-      - "Show all" button shows the complete list with income/expenses from main window.
+      - "Show all" button shows a secondary window with the complete list with income/expenses from main window (same tables model).
+      - Tabbed pane tab selection and Menu/View/Wallet radio buttons also affects "show all" window.
    2. Secondary -> Main
+      - Tabbed pane tab selection in "show all" window also affects main tabbed pane and Menu/View/Wallet radio buttons.
       - Add entries button opens secondary window (allows multiple entries)
    3. Secondary -> Secondary
       - "Modify entries" secondary window modifies Show all secondary window
@@ -75,8 +77,8 @@
 - [x] (1.5) Update components with a variable number of elements.
 
 ### Multiple windows
-- [ ] (2.1) The main window changes/updates components of a secondary window.
-- [ ] (2.2) A secondary window changes/updates components of the main window.
+- [x] (2.1) The main window changes/updates components of a secondary window.
+- [x] (2.2) A secondary window changes/updates components of the main window.
 - [ ] (2.3) A secondary window changes/updates components of another secondary window.
 - [ ] (2.4) The initial window is not the main window.
 

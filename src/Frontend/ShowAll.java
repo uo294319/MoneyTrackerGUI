@@ -15,11 +15,13 @@ public class ShowAll extends javax.swing.JFrame {
      */
     public ShowAll() {
         initComponents();
+        setLocationRelativeTo(null);
     }
     
     public ShowAll(Main main) {
-        initComponents();
+        this();
         this.main = main;
+        this.firstTabStateChange = true;
         syncTables();
     }
     
@@ -51,13 +53,18 @@ public class ShowAll extends javax.swing.JFrame {
         tabbedPane_expenses_scroll = new javax.swing.JScrollPane();
         tabbedPane_expenses_table = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(225, 150));
 
         tabbedPane.setBackground(new java.awt.Color(187, 195, 164));
         tabbedPane.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         tabbedPane.setOpaque(true);
         tabbedPane.setPreferredSize(new java.awt.Dimension(250, 300));
         tabbedPane.setRequestFocusEnabled(false);
+        tabbedPane.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                tabbedPaneStateChanged(evt);
+            }
+        });
 
         tabbedPane_total_scroll.setBackground(new java.awt.Color(187, 195, 164));
 
@@ -86,7 +93,6 @@ public class ShowAll extends javax.swing.JFrame {
             }
         });
         tabbedPane_total_table.setDoubleBuffered(true);
-        tabbedPane_total_table.setRowSelectionAllowed(false);
         tabbedPane_total_table.getTableHeader().setReorderingAllowed(false);
         tabbedPane_total_scroll.setViewportView(tabbedPane_total_table);
 
@@ -174,6 +180,20 @@ public class ShowAll extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tabbedPaneStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tabbedPaneStateChanged
+        // TODO add your handling code here:
+        if(this.main != null)
+        {
+            switch(this.tabbedPane.getSelectedIndex())
+            {
+                case -1 -> System.err.print("Error. No tab selected.");
+                case 0 -> main.selectWalletTotal();
+                case 1 -> main.selectWalletIncome();
+                case 2 -> main.selectWalletExpenses();
+            }
+        }
+    }//GEN-LAST:event_tabbedPaneStateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -211,13 +231,14 @@ public class ShowAll extends javax.swing.JFrame {
     
     
     private Main main;
+    private boolean firstTabStateChange;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTabbedPane tabbedPane;
-    private javax.swing.JScrollPane tabbedPane_expenses_scroll;
-    private javax.swing.JTable tabbedPane_expenses_table;
-    private javax.swing.JScrollPane tabbedPane_income_scroll;
-    private javax.swing.JTable tabbedPane_income_table;
-    private javax.swing.JScrollPane tabbedPane_total_scroll;
-    private javax.swing.JTable tabbedPane_total_table;
+    protected javax.swing.JTabbedPane tabbedPane;
+    protected javax.swing.JScrollPane tabbedPane_expenses_scroll;
+    protected javax.swing.JTable tabbedPane_expenses_table;
+    protected javax.swing.JScrollPane tabbedPane_income_scroll;
+    protected javax.swing.JTable tabbedPane_income_table;
+    protected javax.swing.JScrollPane tabbedPane_total_scroll;
+    protected javax.swing.JTable tabbedPane_total_table;
     // End of variables declaration//GEN-END:variables
 }

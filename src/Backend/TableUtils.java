@@ -16,9 +16,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TableUtils {
     
-    static final int  COLUMN_QUANTITY = 1;
-    static final int  COLUMN_TOTAL = 0;
-    static final int  COLUMN_TAG = 2;
+    public static final int  COLUMN_QUANTITY = 1;
+    public static final int  COLUMN_TOTAL = 0;
+    public static final int  COLUMN_TAG = 2;
     
     
     public static void configTable(javax.swing.JTable table) {

@@ -19,6 +19,7 @@ public class Main extends javax.swing.JFrame {
      * Creates new form Main
      */
     public Main() {
+        
         this.initComponents();
         this.setLocationRelativeTo(null);
         
@@ -27,7 +28,6 @@ public class Main extends javax.swing.JFrame {
         TableUtils.configTable(this.wallet_expenses_table);
         
         this.showAllWindow = new ShowAll(this);
-
     }
     
 
@@ -97,6 +97,18 @@ public class Main extends javax.swing.JFrame {
         main_tabbedPanel_wallet.setOpaque(true);
         main_tabbedPanel_wallet.setPreferredSize(new java.awt.Dimension(250, 300));
         main_tabbedPanel_wallet.setRequestFocusEnabled(false);
+        main_tabbedPanel_wallet.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                main_tabbedPanel_walletStateChanged(evt);
+            }
+        });
+        main_tabbedPanel_wallet.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+                main_tabbedPanel_walletCaretPositionChanged(evt);
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+            }
+        });
 
         wallet_total_scroll.setBackground(new java.awt.Color(187, 195, 164));
 
@@ -204,7 +216,12 @@ public class Main extends javax.swing.JFrame {
 
         main_showAll.setBackground(new java.awt.Color(179, 163, 152));
         main_showAll.setText("Show All");
-        main_showAll.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        main_showAll.setBorder(null);
+        main_showAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                main_showAllActionPerformed(evt);
+            }
+        });
         mainPanel.add(main_showAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 312, 100, 32));
 
         main_eurSymbol.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
@@ -232,17 +249,17 @@ public class Main extends javax.swing.JFrame {
 
         main_addEntries.setBackground(new java.awt.Color(179, 163, 152));
         main_addEntries.setText("Add entries");
-        main_addEntries.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        main_addEntries.setBorder(null);
         mainPanel.add(main_addEntries, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 160, 36));
 
         main_deleteEntry.setBackground(new java.awt.Color(179, 163, 152));
         main_deleteEntry.setText("Delete entry");
-        main_deleteEntry.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        main_deleteEntry.setBorder(null);
         mainPanel.add(main_deleteEntry, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 160, 36));
 
         main_modEntry.setBackground(new java.awt.Color(179, 163, 152));
         main_modEntry.setText("Modify entry");
-        main_modEntry.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        main_modEntry.setBorder(null);
         mainPanel.add(main_modEntry, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 160, 36));
 
         getContentPane().add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -462,23 +479,17 @@ public class Main extends javax.swing.JFrame {
 
     private void menu_view_wallet_totalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_view_wallet_totalActionPerformed
         // TODO add your handling code here:
-        this.main_tabbedPanel_wallet.setSelectedComponent(
-                this.wallet_total_scroll
-        );
+        this.selectWalletTotal();
     }//GEN-LAST:event_menu_view_wallet_totalActionPerformed
 
     private void menu_view_wallet_expensesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_view_wallet_expensesActionPerformed
         // TODO add your handling code here:
-        this.main_tabbedPanel_wallet.setSelectedComponent(
-                this.wallet_expenses_scroll
-        );
+        this.selectWalletExpenses();
     }//GEN-LAST:event_menu_view_wallet_expensesActionPerformed
 
     private void menu_view_wallet_incomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_view_wallet_incomeActionPerformed
         // TODO add your handling code here:
-        this.main_tabbedPanel_wallet.setSelectedComponent(
-                this.wallet_income_scroll
-        );
+        this.selectWalletIncome();
     }//GEN-LAST:event_menu_view_wallet_incomeActionPerformed
 
     private void menu_edit_autoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_edit_autoActionPerformed
@@ -507,10 +518,31 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_menu_help_aboutActionPerformed
 
     private void wallet_total_tablePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_wallet_total_tablePropertyChange
-        // TODO add your handling code here:
-        //evt.getOldValue();
-        //this.wallet_total_table.set
+
     }//GEN-LAST:event_wallet_total_tablePropertyChange
+
+    private void main_showAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_main_showAllActionPerformed
+        // TODO add your handling code here:
+        this.showAllWindow.setVisible(true);
+    }//GEN-LAST:event_main_showAllActionPerformed
+
+    private void main_tabbedPanel_walletCaretPositionChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_main_tabbedPanel_walletCaretPositionChanged
+
+    }//GEN-LAST:event_main_tabbedPanel_walletCaretPositionChanged
+
+    private void main_tabbedPanel_walletStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_main_tabbedPanel_walletStateChanged
+        // TODO add your handling code here:
+        if(this.showAllWindow != null)
+        {
+            switch(this.main_tabbedPanel_wallet.getSelectedIndex())
+            {
+                case -1 -> System.err.print("Error. No tab selected.");
+                case 0 -> this.selectWalletTotal();
+                case 1 -> this.selectWalletIncome();
+                case 2 -> this.selectWalletExpenses();
+            }
+        }
+    }//GEN-LAST:event_main_tabbedPanel_walletStateChanged
 
     /**
      * @param args the command line arguments
@@ -574,9 +606,40 @@ public class Main extends javax.swing.JFrame {
         TableUtils.cleanTable(this.wallet_income_table);
         TableUtils.cleanTable(this.wallet_expenses_table);
     } 
+    
+    
+    protected void selectWalletTotal() {
+        this.menu_view_wallet_total.setSelected(true);
+        this.main_tabbedPanel_wallet.setSelectedComponent(
+                this.wallet_total_scroll
+        );
+        this.showAllWindow.tabbedPane.setSelectedComponent(
+                this.showAllWindow.tabbedPane_total_scroll
+        );
+    }
+    
+    protected void selectWalletIncome() {
+        this.menu_view_wallet_income.setSelected(true);
+        this.main_tabbedPanel_wallet.setSelectedComponent(
+                this.wallet_income_scroll
+        );
+        this.showAllWindow.tabbedPane.setSelectedComponent(
+                this.showAllWindow.tabbedPane_income_scroll
+        );
+    }
+    
+    protected void selectWalletExpenses() {
+        this.menu_view_wallet_expenses.setSelected(true);
+        this.main_tabbedPanel_wallet.setSelectedComponent(
+                this.wallet_expenses_scroll
+        );
+        this.showAllWindow.tabbedPane.setSelectedComponent(
+                this.showAllWindow.tabbedPane_expenses_scroll
+        );
+    }
 
     
-    private ShowAll showAllWindow;
+    protected ShowAll showAllWindow;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     protected javax.swing.JMenuItem jMenuItem1;
