@@ -1,5 +1,9 @@
 package Frontend;
 
+import Backend.TableUtils;
+import Backend.Utils;
+import javax.swing.table.DefaultTableModel;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -15,9 +19,15 @@ public class Main extends javax.swing.JFrame {
      * Creates new form Main
      */
     public Main() {
-        initComponents();
-        setLocationRelativeTo(null);
+        this.initComponents();
+        this.setLocationRelativeTo(null);
+        
+        TableUtils.configTable(this.wallet_total_table);
+        TableUtils.configTable(this.wallet_income_table);
+        TableUtils.configTable(this.wallet_expenses_table);
+
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,17 +43,17 @@ public class Main extends javax.swing.JFrame {
         mainPanel = new javax.swing.JPanel();
         main_tabbedPanel_wallet = new javax.swing.JTabbedPane();
         wallet_total_scroll = new javax.swing.JScrollPane();
-        wallet_total_list = new javax.swing.JTable();
+        wallet_total_table = new javax.swing.JTable();
         wallet_income_scroll = new javax.swing.JScrollPane();
-        wallet_income_list = new javax.swing.JTable();
+        wallet_income_table = new javax.swing.JTable();
         wallet_expenses_scroll = new javax.swing.JScrollPane();
-        wallet_expenses_list = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        wallet_expenses_table = new javax.swing.JTable();
+        main_showAll = new javax.swing.JButton();
+        main_total = new javax.swing.JLabel();
         mainPanel_disclaimer = new javax.swing.JTextArea();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        main_addEntries = new javax.swing.JButton();
+        main_deleteEntry = new javax.swing.JButton();
+        main_modEntry = new javax.swing.JButton();
         menu = new javax.swing.JMenuBar();
         menu_file = new javax.swing.JMenu();
         menu_file_open = new javax.swing.JMenuItem();
@@ -52,8 +62,12 @@ public class Main extends javax.swing.JFrame {
         menu_file_import = new javax.swing.JMenuItem();
         menu_file_export = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
-        menu_file_close = new javax.swing.JMenuItem();
+        menu_file_quit = new javax.swing.JMenuItem();
         menu_edit = new javax.swing.JMenu();
+        menu_edit_auto = new javax.swing.JCheckBoxMenuItem();
+        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
+        jSeparator3 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem1 = new javax.swing.JMenuItem();
         menu_edit_add = new javax.swing.JMenuItem();
         menu_edit_clear = new javax.swing.JMenuItem();
         menu_view = new javax.swing.JMenu();
@@ -61,14 +75,6 @@ public class Main extends javax.swing.JFrame {
         menu_view_wallet_total = new javax.swing.JRadioButtonMenuItem();
         menu_view_wallet_income = new javax.swing.JRadioButtonMenuItem();
         menu_view_wallet_expenses = new javax.swing.JRadioButtonMenuItem();
-        menu_view_period = new javax.swing.JMenu();
-        menu_view_period_all = new javax.swing.JRadioButtonMenuItem();
-        menu_view_period_anual = new javax.swing.JRadioButtonMenuItem();
-        menu_view_period_month = new javax.swing.JRadioButtonMenuItem();
-        menu_view_period_custom = new javax.swing.JRadioButtonMenuItem();
-        jSeparator3 = new javax.swing.JPopupMenu.Separator();
-        menu_view_date = new javax.swing.JCheckBoxMenuItem();
-        menu_view_tag = new javax.swing.JCheckBoxMenuItem();
         menu_help = new javax.swing.JMenu();
         menu_help_doc = new javax.swing.JMenuItem();
         menu_help_about = new javax.swing.JMenuItem();
@@ -88,28 +94,23 @@ public class Main extends javax.swing.JFrame {
         main_tabbedPanel_wallet.setOpaque(true);
         main_tabbedPanel_wallet.setPreferredSize(new java.awt.Dimension(250, 300));
         main_tabbedPanel_wallet.setRequestFocusEnabled(false);
-        main_tabbedPanel_wallet.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                main_tabbedPanel_walletStateChanged(evt);
-            }
-        });
 
         wallet_total_scroll.setBackground(new java.awt.Color(187, 195, 164));
 
-        wallet_total_list.setBackground(new java.awt.Color(187, 195, 164));
-        wallet_total_list.setModel(new javax.swing.table.DefaultTableModel(
+        wallet_total_table.setBackground(new java.awt.Color(187, 195, 164));
+        wallet_total_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Date", "Quantity", "Total", "Tag"
+                "Quantity", "Total", "Tag"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.String.class
+                java.lang.Double.class, java.lang.Double.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -120,28 +121,28 @@ public class Main extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        wallet_total_list.setDoubleBuffered(true);
-        wallet_total_list.getTableHeader().setReorderingAllowed(false);
-        wallet_total_scroll.setViewportView(wallet_total_list);
+        wallet_total_table.setDoubleBuffered(true);
+        wallet_total_table.getTableHeader().setReorderingAllowed(false);
+        wallet_total_scroll.setViewportView(wallet_total_table);
 
         main_tabbedPanel_wallet.addTab("Total", wallet_total_scroll);
 
         wallet_income_scroll.setBackground(new java.awt.Color(187, 195, 164));
 
-        wallet_income_list.setBackground(new java.awt.Color(187, 195, 164));
-        wallet_income_list.setModel(new javax.swing.table.DefaultTableModel(
+        wallet_income_table.setBackground(new java.awt.Color(187, 195, 164));
+        wallet_income_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Date", "Quantity", "Total", "Tag"
+                "Quantity", "Total", "Tag"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.String.class
+                java.lang.Double.class, java.lang.Double.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -152,26 +153,26 @@ public class Main extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        wallet_income_list.setDoubleBuffered(true);
-        wallet_income_list.getTableHeader().setReorderingAllowed(false);
-        wallet_income_scroll.setViewportView(wallet_income_list);
+        wallet_income_table.setDoubleBuffered(true);
+        wallet_income_table.getTableHeader().setReorderingAllowed(false);
+        wallet_income_scroll.setViewportView(wallet_income_table);
 
         main_tabbedPanel_wallet.addTab("Income", wallet_income_scroll);
 
-        wallet_expenses_list.setBackground(new java.awt.Color(187, 195, 164));
-        wallet_expenses_list.setModel(new javax.swing.table.DefaultTableModel(
+        wallet_expenses_table.setBackground(new java.awt.Color(187, 195, 164));
+        wallet_expenses_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Date", "Quantity", "Total", "Tag"
+                "Quantity", "Total", "Tag"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.String.class
+                java.lang.Double.class, java.lang.Double.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -182,23 +183,23 @@ public class Main extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        wallet_expenses_list.setDoubleBuffered(true);
-        wallet_expenses_list.getTableHeader().setReorderingAllowed(false);
-        wallet_expenses_scroll.setViewportView(wallet_expenses_list);
+        wallet_expenses_table.setDoubleBuffered(true);
+        wallet_expenses_table.getTableHeader().setReorderingAllowed(false);
+        wallet_expenses_scroll.setViewportView(wallet_expenses_table);
 
         main_tabbedPanel_wallet.addTab("Expenses", wallet_expenses_scroll);
 
         mainPanel.add(main_tabbedPanel_wallet, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 6, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(179, 163, 152));
-        jButton1.setText("Show All");
-        jButton1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        mainPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 312, 100, 32));
+        main_showAll.setBackground(new java.awt.Color(179, 163, 152));
+        main_showAll.setText("Show All");
+        main_showAll.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        mainPanel.add(main_showAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 312, 100, 32));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("$$$$$$$");
-        mainPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 232, -1));
+        main_total.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        main_total.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        main_total.setText("$$$$$$$");
+        mainPanel.add(main_total, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 232, -1));
 
         mainPanel_disclaimer.setEditable(false);
         mainPanel_disclaimer.setBackground(new java.awt.Color(198, 220, 186));
@@ -213,20 +214,20 @@ public class Main extends javax.swing.JFrame {
         mainPanel_disclaimer.setMinimumSize(new java.awt.Dimension(48, 18));
         mainPanel.add(mainPanel_disclaimer, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 314, 142, 30));
 
-        jButton2.setBackground(new java.awt.Color(179, 163, 152));
-        jButton2.setText("Add entries");
-        jButton2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        mainPanel.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 160, 36));
+        main_addEntries.setBackground(new java.awt.Color(179, 163, 152));
+        main_addEntries.setText("Add entries");
+        main_addEntries.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        mainPanel.add(main_addEntries, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 160, 36));
 
-        jButton3.setBackground(new java.awt.Color(179, 163, 152));
-        jButton3.setText("Delete entry");
-        jButton3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        mainPanel.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 160, 36));
+        main_deleteEntry.setBackground(new java.awt.Color(179, 163, 152));
+        main_deleteEntry.setText("Delete entry");
+        main_deleteEntry.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        mainPanel.add(main_deleteEntry, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 160, 36));
 
-        jButton4.setBackground(new java.awt.Color(179, 163, 152));
-        jButton4.setText("Modify entry");
-        jButton4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        mainPanel.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 160, 36));
+        main_modEntry.setBackground(new java.awt.Color(179, 163, 152));
+        main_modEntry.setText("Modify entry");
+        main_modEntry.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        mainPanel.add(main_modEntry, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 160, 36));
 
         getContentPane().add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -277,20 +278,48 @@ public class Main extends javax.swing.JFrame {
         menu_file.add(menu_file_export);
         menu_file.add(jSeparator2);
 
-        menu_file_close.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        menu_file_close.setBackground(new java.awt.Color(187, 195, 164));
-        menu_file_close.setText("Close");
-        menu_file_close.addActionListener(new java.awt.event.ActionListener() {
+        menu_file_quit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        menu_file_quit.setBackground(new java.awt.Color(187, 195, 164));
+        menu_file_quit.setText("Quit");
+        menu_file_quit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu_file_closeActionPerformed(evt);
+                menu_file_quitActionPerformed(evt);
             }
         });
-        menu_file.add(menu_file_close);
+        menu_file.add(menu_file_quit);
 
         menu.add(menu_file);
 
         menu_edit.setBackground(new java.awt.Color(187, 195, 164));
         menu_edit.setText("Edit");
+
+        menu_edit_auto.setSelected(true);
+        menu_edit_auto.setText("Auto-save");
+        menu_edit_auto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_edit_autoActionPerformed(evt);
+            }
+        });
+        menu_edit.add(menu_edit_auto);
+
+        jCheckBoxMenuItem1.setSelected(true);
+        jCheckBoxMenuItem1.setText("Save to cloud");
+        jCheckBoxMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxMenuItem1ActionPerformed(evt);
+            }
+        });
+        menu_edit.add(jCheckBoxMenuItem1);
+        menu_edit.add(jSeparator3);
+
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItem1.setText("Undo");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        menu_edit.add(jMenuItem1);
 
         menu_edit_add.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menu_edit_add.setBackground(new java.awt.Color(187, 195, 164));
@@ -304,6 +333,11 @@ public class Main extends javax.swing.JFrame {
 
         menu_edit_clear.setBackground(new java.awt.Color(187, 195, 164));
         menu_edit_clear.setText("Clear all entries");
+        menu_edit_clear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_edit_clearActionPerformed(evt);
+            }
+        });
         menu_edit.add(menu_edit_clear);
 
         menu.add(menu_edit);
@@ -345,43 +379,6 @@ public class Main extends javax.swing.JFrame {
 
         menu_view.add(menu_view_wallet);
 
-        menu_view_period.setBackground(new java.awt.Color(187, 195, 164));
-        menu_view_period.setText("Period");
-
-        menu_view_period_all.setBackground(new java.awt.Color(187, 195, 164));
-        period.add(menu_view_period_all);
-        menu_view_period_all.setSelected(true);
-        menu_view_period_all.setText("All");
-        menu_view_period.add(menu_view_period_all);
-
-        menu_view_period_anual.setBackground(new java.awt.Color(187, 195, 164));
-        period.add(menu_view_period_anual);
-        menu_view_period_anual.setText("Anual");
-        menu_view_period.add(menu_view_period_anual);
-
-        menu_view_period_month.setBackground(new java.awt.Color(187, 195, 164));
-        period.add(menu_view_period_month);
-        menu_view_period_month.setText("Month");
-        menu_view_period.add(menu_view_period_month);
-
-        menu_view_period_custom.setBackground(new java.awt.Color(187, 195, 164));
-        period.add(menu_view_period_custom);
-        menu_view_period_custom.setText("Custom");
-        menu_view_period.add(menu_view_period_custom);
-
-        menu_view.add(menu_view_period);
-        menu_view.add(jSeparator3);
-
-        menu_view_date.setBackground(new java.awt.Color(187, 195, 164));
-        menu_view_date.setSelected(true);
-        menu_view_date.setText("Show date");
-        menu_view.add(menu_view_date);
-
-        menu_view_tag.setBackground(new java.awt.Color(187, 195, 164));
-        menu_view_tag.setSelected(true);
-        menu_view_tag.setText("Show tag");
-        menu_view.add(menu_view_tag);
-
         menu.add(menu_view);
 
         menu_help.setBackground(new java.awt.Color(187, 195, 164));
@@ -389,10 +386,20 @@ public class Main extends javax.swing.JFrame {
 
         menu_help_doc.setBackground(new java.awt.Color(187, 195, 164));
         menu_help_doc.setText("Documentation");
+        menu_help_doc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_help_docActionPerformed(evt);
+            }
+        });
         menu_help.add(menu_help_doc);
 
         menu_help_about.setBackground(new java.awt.Color(187, 195, 164));
         menu_help_about.setText("About");
+        menu_help_about.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_help_aboutActionPerformed(evt);
+            }
+        });
         menu_help.add(menu_help_about);
 
         menu.add(menu_help);
@@ -412,15 +419,26 @@ public class Main extends javax.swing.JFrame {
 
     private void menu_file_sampleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_file_sampleActionPerformed
         // TODO add your handling code here:
+        
+        this.clearTables();
+        
+        this.addEntry(1600, "Salario");
+        this.addEntry(-700, "Renta piso");
+        this.addEntry(-27.50, "Comida");
+        this.addEntry(+55, "Venta TV");
+        this.addEntry(-45, "Cena");
+        this.addEntry(-20.50, "Regalo");
+        
     }//GEN-LAST:event_menu_file_sampleActionPerformed
 
     private void menu_file_exportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_file_exportActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_menu_file_exportActionPerformed
 
-    private void menu_file_closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_file_closeActionPerformed
+    private void menu_file_quitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_file_quitActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_menu_file_closeActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_menu_file_quitActionPerformed
     
     private void menu_edit_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_edit_addActionPerformed
         // TODO add your handling code here:
@@ -447,18 +465,29 @@ public class Main extends javax.swing.JFrame {
         );
     }//GEN-LAST:event_menu_view_wallet_incomeActionPerformed
 
-    private void main_tabbedPanel_walletStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_main_tabbedPanel_walletStateChanged
+    private void menu_edit_autoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_edit_autoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menu_edit_autoActionPerformed
 
-        // 0 = Total, 1 = Income, 2 = Expenses
-        switch(this.main_tabbedPanel_wallet.getSelectedIndex())
-        {
-            case -1 -> System.err.print("Error. No tab selected");
-            case 0 -> this.menu_view_wallet_total.setSelected(true);
-            case 1 -> this.menu_view_wallet_income.setSelected(true);
-            case 2 -> this.menu_view_wallet_expenses.setSelected(true);
-            default -> System.err.print("Error. Invalid tab selected");
-        }
-    }//GEN-LAST:event_main_tabbedPanel_walletStateChanged
+    private void jCheckBoxMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBoxMenuItem1ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void menu_edit_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_edit_clearActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menu_edit_clearActionPerformed
+
+    private void menu_help_docActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_help_docActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menu_help_docActionPerformed
+
+    private void menu_help_aboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_help_aboutActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menu_help_aboutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -494,51 +523,73 @@ public class Main extends javax.swing.JFrame {
             }
         });
     }
+    
+    protected double getAbsoluteTotal() {
+        return TableUtils.getRelativeTotal(this.wallet_total_table);
+    }
+    
+    protected void addEntry(double quantity, String tag) {
+         
+        if(quantity == 0)
+            System.err.print("Error. Quantities cannot be 0");
+        else
+        {
+            TableUtils.addEntryToTable(this.wallet_total_table, quantity, tag);
+            
+            if(quantity < 0)
+                TableUtils.addEntryToTable(this.wallet_expenses_table, quantity, tag);
+            else
+                TableUtils.addEntryToTable(this.wallet_income_table, quantity, tag);
+        }
+
+    }
+    
+    protected void clearTables() {
+        TableUtils.cleanTable(this.wallet_total_table);
+        TableUtils.cleanTable(this.wallet_income_table);
+        TableUtils.cleanTable(this.wallet_expenses_table);
+    } 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JTextArea mainPanel_disclaimer;
+    private javax.swing.JButton main_addEntries;
+    private javax.swing.JButton main_deleteEntry;
+    private javax.swing.JButton main_modEntry;
+    private javax.swing.JButton main_showAll;
     private javax.swing.JTabbedPane main_tabbedPanel_wallet;
+    private javax.swing.JLabel main_total;
     private javax.swing.JMenuBar menu;
     private javax.swing.JMenu menu_edit;
     private javax.swing.JMenuItem menu_edit_add;
+    private javax.swing.JCheckBoxMenuItem menu_edit_auto;
     private javax.swing.JMenuItem menu_edit_clear;
     private javax.swing.JMenu menu_file;
-    private javax.swing.JMenuItem menu_file_close;
     private javax.swing.JMenuItem menu_file_export;
     private javax.swing.JMenuItem menu_file_import;
     private javax.swing.JMenuItem menu_file_open;
+    private javax.swing.JMenuItem menu_file_quit;
     private javax.swing.JMenuItem menu_file_sample;
     private javax.swing.JMenu menu_help;
     private javax.swing.JMenuItem menu_help_about;
     private javax.swing.JMenuItem menu_help_doc;
     private javax.swing.JMenu menu_view;
-    private javax.swing.JCheckBoxMenuItem menu_view_date;
-    private javax.swing.JMenu menu_view_period;
-    private javax.swing.JRadioButtonMenuItem menu_view_period_all;
-    private javax.swing.JRadioButtonMenuItem menu_view_period_anual;
-    private javax.swing.JRadioButtonMenuItem menu_view_period_custom;
-    private javax.swing.JRadioButtonMenuItem menu_view_period_month;
-    private javax.swing.JCheckBoxMenuItem menu_view_tag;
     private javax.swing.JMenu menu_view_wallet;
     private javax.swing.JRadioButtonMenuItem menu_view_wallet_expenses;
     private javax.swing.JRadioButtonMenuItem menu_view_wallet_income;
     private javax.swing.JRadioButtonMenuItem menu_view_wallet_total;
     private javax.swing.ButtonGroup period;
     private javax.swing.ButtonGroup wallet;
-    private javax.swing.JTable wallet_expenses_list;
     private javax.swing.JScrollPane wallet_expenses_scroll;
-    private javax.swing.JTable wallet_income_list;
+    private javax.swing.JTable wallet_expenses_table;
     private javax.swing.JScrollPane wallet_income_scroll;
-    private javax.swing.JTable wallet_total_list;
+    private javax.swing.JTable wallet_income_table;
     private javax.swing.JScrollPane wallet_total_scroll;
+    private javax.swing.JTable wallet_total_table;
     // End of variables declaration//GEN-END:variables
 }

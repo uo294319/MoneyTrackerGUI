@@ -8,15 +8,15 @@
         - Open sample
         - Import from csv
         - Export in csv
-        - Close
+        - Quit
       - Edit
+        - Auto-save
+        - Save to cloud
+        - Undo
         - Add entries
         - Clear all entries
       - View
         - Wallet -> Radial button (All, Expenses, Income)
-        - Period -> Radial button (Total, Anual, Month, Custom)
-        - Show date (Checkbox)
-        - Show tag (Checkbox)
       - Help
         - Documentation (link to github docs)
         - About (link to github readme)
@@ -30,16 +30,13 @@
    3. Actions
       - View modifies entries shown
         - Wallet synchronized with the tabbed pannel.
-
-> [!Caution]
-> View/Period is not implemented.
     
    4. Keyboard restrictions
       - Only allows alphanumeric values in description.
       - Only allows +/- and digits in mov.
       - Only allows 20 char in description.
   
-   5. List inside of tabbed pannel (all/expenses/income)
+   5. Dynamic tables inside each element (all/expenses/income) of the tabbed pannel.
       - Modified with buttons left (Add, delete, Mod)
       - Also with main menu -> File -> add entry, delete all entries 
 
@@ -75,7 +72,7 @@
 - [x] (1.2) Components on a layout which is not the default one.
 - [x] (1.3) Events: Components are modified when the user does an action.
 - [ ] (1.4) Keyboard events
-- [ ] (1.5) Update components with a variable number of elements.
+- [x] (1.5) Update components with a variable number of elements.
 
 ### Multiple windows
 - [ ] (2.1) The main window changes/updates components of a secondary window.
@@ -101,18 +98,18 @@ windows
 - Add funtionality to menu bar
   - File
     - [ ] Open
-    - [ ] Open sample
+    - [x] Open sample
     - [ ] Import from csv
     - [ ] Export in csv
-    - [ ] Close
+    - [x] Quit
   - Edit
+    - [ ] Auto-save
+    - [ ] Save to cloud
+    - [ ] Undo
     - [ ] Add entries
-    - [ ] Clear all entries
+    - [x] Clear all entries
   - View
     - [x] Wallet -> Radial (Total, Expenses, Income)
-    - [ ] Period -> Radial (All, Anual, Month, Custom)
-    - [ ] Show date (Checkbox)
-    - [ ] Show tag (Checkbox)
   - Help
     - [ ] Documentation (link to github docs)
     - [ ] About (link to github readme)
