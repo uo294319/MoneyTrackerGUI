@@ -48,7 +48,7 @@
       - Tabbed pane tab selection in "show all" window also affects main tabbed pane and Menu/View/Wallet radio buttons.
       - Add entries button opens secondary window (allows multiple entries)
    3. Secondary -> Secondary
-      - "Modify entries" secondary window modifies Show all secondary window
+      - Menu/view/Customize view opens a secondary window that modifies appearance in every other window (including main window and secondary ones).
    4. Initial window -> Welcome window
 
 

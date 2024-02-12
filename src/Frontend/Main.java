@@ -27,9 +27,11 @@ public class Main extends javax.swing.JFrame {
         TableUtils.configTable(this.wallet_income_table);
         TableUtils.configTable(this.wallet_expenses_table);
         
-        this.showAllWindow = new ShowAll(this);
         this.welcomeWindow = new Welcome(this);
         this.welcomeWindow.setVisible(true);
+        
+        this.showAllWindow = new ShowAll(this);
+        this.backgroundColor = new BackgroundColor(this);
     }
     
 
@@ -80,6 +82,8 @@ public class Main extends javax.swing.JFrame {
         menu_view_wallet_total = new javax.swing.JRadioButtonMenuItem();
         menu_view_wallet_income = new javax.swing.JRadioButtonMenuItem();
         menu_view_wallet_expenses = new javax.swing.JRadioButtonMenuItem();
+        jSeparator4 = new javax.swing.JPopupMenu.Separator();
+        menu_view_custom = new javax.swing.JMenuItem();
         menu_help = new javax.swing.JMenu();
         menu_help_doc = new javax.swing.JMenuItem();
         menu_help_about = new javax.swing.JMenuItem();
@@ -294,6 +298,7 @@ public class Main extends javax.swing.JFrame {
         menu_file.add(menu_file_sample);
         menu_file.add(jSeparator1);
 
+        menu_file_import.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menu_file_import.setBackground(new java.awt.Color(187, 195, 164));
         menu_file_import.setText("Import csv");
         menu_file_import.addActionListener(new java.awt.event.ActionListener() {
@@ -303,6 +308,7 @@ public class Main extends javax.swing.JFrame {
         });
         menu_file.add(menu_file_import);
 
+        menu_file_export.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menu_file_export.setBackground(new java.awt.Color(187, 195, 164));
         menu_file_export.setText("Export csv");
         menu_file_export.addActionListener(new java.awt.event.ActionListener() {
@@ -413,6 +419,16 @@ public class Main extends javax.swing.JFrame {
         menu_view_wallet.add(menu_view_wallet_expenses);
 
         menu_view.add(menu_view_wallet);
+        menu_view.add(jSeparator4);
+
+        menu_view_custom.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        menu_view_custom.setText("Customize view");
+        menu_view_custom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_view_customActionPerformed(evt);
+            }
+        });
+        menu_view.add(menu_view_custom);
 
         menu.add(menu_view);
 
@@ -546,6 +562,11 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_main_tabbedPanel_walletStateChanged
 
+    private void menu_view_customActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_view_customActionPerformed
+        // TODO add your handling code here:
+        this.backgroundColor.setVisible(true);
+    }//GEN-LAST:event_menu_view_customActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -579,6 +600,10 @@ public class Main extends javax.swing.JFrame {
                 new Main().setVisible(false);
             }
         });
+    }
+    
+    protected ShowAll getShowAllWindow() {
+        return this.showAllWindow;
     }
     
     protected double getAbsoluteTotal() {
@@ -643,12 +668,14 @@ public class Main extends javax.swing.JFrame {
     
     protected ShowAll showAllWindow;
     protected Welcome welcomeWindow;
+    protected BackgroundColor backgroundColor;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     protected javax.swing.JMenuItem jMenuItem1;
     protected javax.swing.JPopupMenu.Separator jSeparator1;
     protected javax.swing.JPopupMenu.Separator jSeparator2;
     protected javax.swing.JPopupMenu.Separator jSeparator3;
+    protected javax.swing.JPopupMenu.Separator jSeparator4;
     protected javax.swing.JPanel mainPanel;
     protected javax.swing.JTextArea mainPanel_disclaimer;
     protected javax.swing.JButton main_addEntries;
@@ -673,6 +700,7 @@ public class Main extends javax.swing.JFrame {
     protected javax.swing.JMenuItem menu_help_about;
     protected javax.swing.JMenuItem menu_help_doc;
     protected javax.swing.JMenu menu_view;
+    protected javax.swing.JMenuItem menu_view_custom;
     protected javax.swing.JMenu menu_view_wallet;
     protected javax.swing.JRadioButtonMenuItem menu_view_wallet_expenses;
     protected javax.swing.JRadioButtonMenuItem menu_view_wallet_income;

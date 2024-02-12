@@ -4,6 +4,8 @@
  */
 package Frontend;
 
+import java.awt.Color;
+
 /**
  *
  * @author uo294319
@@ -227,6 +229,21 @@ public class ShowAll extends javax.swing.JFrame {
                 new ShowAll().setVisible(true);
             }
         });
+    }
+    
+    protected final void setBackgroundAllDefault() {
+        this.setBackgroundAll(new Color(187,195,164));
+    }
+    
+    protected void setBackgroundAll(Color c) {
+        this.setBackground(c);
+        this.tabbedPane.setBackground(c);
+        this.tabbedPane_expenses_scroll.setBackground(c);
+        this.tabbedPane_expenses_table.setBackground(c);
+        this.tabbedPane_income_scroll.setBackground(c);
+        this.tabbedPane_income_table.setBackground(c);
+        this.tabbedPane_total_scroll.setBackground(c);
+        this.tabbedPane_total_table.setBackground(c);
     }
     
     
