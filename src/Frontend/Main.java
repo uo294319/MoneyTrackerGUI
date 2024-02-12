@@ -28,6 +28,8 @@ public class Main extends javax.swing.JFrame {
         TableUtils.configTable(this.wallet_expenses_table);
         
         this.showAllWindow = new ShowAll(this);
+        this.welcomeWindow = new Welcome(this);
+        this.welcomeWindow.setVisible(true);
     }
     
 
@@ -574,7 +576,7 @@ public class Main extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Main().setVisible(true);
+                new Main().setVisible(false);
             }
         });
     }
@@ -640,6 +642,7 @@ public class Main extends javax.swing.JFrame {
 
     
     protected ShowAll showAllWindow;
+    protected Welcome welcomeWindow;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     protected javax.swing.JMenuItem jMenuItem1;

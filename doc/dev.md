@@ -80,7 +80,7 @@
 - [x] (2.1) The main window changes/updates components of a secondary window.
 - [x] (2.2) A secondary window changes/updates components of the main window.
 - [ ] (2.3) A secondary window changes/updates components of another secondary window.
-- [ ] (2.4) The initial window is not the main window.
+- [x] (2.4) The initial window is not the main window.
 
 ### Dialogs
 - [ ] (3.1) A dialog using JOptionPane.
@@ -120,4 +120,4 @@ windows
   - [ ] Add entries
   - [ ] Delete entry
   - [ ] Modify entry
-  - [ ] Show All
+  - [x] Show All
