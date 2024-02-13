@@ -238,11 +238,8 @@ public class ShowAll extends javax.swing.JFrame {
     protected void setBackgroundAll(Color c) {
         this.setBackground(c);
         this.tabbedPane.setBackground(c);
-        this.tabbedPane_expenses_scroll.setBackground(c);
         this.tabbedPane_expenses_table.setBackground(c);
-        this.tabbedPane_income_scroll.setBackground(c);
         this.tabbedPane_income_table.setBackground(c);
-        this.tabbedPane_total_scroll.setBackground(c);
         this.tabbedPane_total_table.setBackground(c);
     }
     

@@ -2,6 +2,7 @@ package Frontend;
 
 import Backend.TableUtils;
 import Backend.Utils;
+import java.awt.Color;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -31,7 +32,7 @@ public class Main extends javax.swing.JFrame {
         this.welcomeWindow.setVisible(true);
         
         this.showAllWindow = new ShowAll(this);
-        this.backgroundColor = new BackgroundColor(this);
+        this.backgroundColor = new CustomView(this);
     }
     
 
@@ -606,6 +607,13 @@ public class Main extends javax.swing.JFrame {
         return this.showAllWindow;
     }
     
+    protected void setTableBackground(Color c) {
+        this.main_tabbedPanel_wallet.setBackground(c);
+        this.wallet_expenses_table.setBackground(c);
+        this.wallet_income_table.setBackground(c);
+        this.wallet_total_table.setBackground(c);
+    }
+    
     protected double getAbsoluteTotal() {
         return TableUtils.getRelativeTotal(this.wallet_total_table);
     }
@@ -668,7 +676,7 @@ public class Main extends javax.swing.JFrame {
     
     protected ShowAll showAllWindow;
     protected Welcome welcomeWindow;
-    protected BackgroundColor backgroundColor;
+    protected CustomView backgroundColor;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     protected javax.swing.JMenuItem jMenuItem1;

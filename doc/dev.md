@@ -17,6 +17,7 @@
         - Clear all entries
       - View
         - Wallet -> Radial button (All, Expenses, Income)
+        - Customize view
       - Help
         - Documentation (link to github docs)
         - About (link to github readme)
@@ -49,6 +50,10 @@
       - Add entries button opens secondary window (allows multiple entries)
    3. Secondary -> Secondary
       - Menu/view/Customize view opens a secondary window that modifies appearance in every other window (including main window and secondary ones).
+
+> [!NOTE]
+> Only change color for tables was implemented.
+
    4. Initial window -> Welcome window
 
 
@@ -112,6 +117,7 @@ windows
     - [x] Clear all entries
   - View
     - [x] Wallet -> Radial (Total, Expenses, Income)
+    - [ ] Customize view
   - Help
     - [ ] Documentation (link to github docs)
     - [ ] About (link to github readme)
@@ -121,3 +127,10 @@ windows
   - [ ] Delete entry
   - [ ] Modify entry
   - [x] Show All
+
+- Custom view functionalities
+  - [ ] Change Background Color
+  - [x] Change Tables Color
+  - [ ] Change Buttons Color
+  - [x] Apply
+  - [x] Set Default
