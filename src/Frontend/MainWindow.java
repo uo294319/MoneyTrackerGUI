@@ -4,6 +4,8 @@ import Backend.TableUtils;
 import Backend.Utils;
 import java.awt.Color;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -282,6 +284,11 @@ public class MainWindow extends javax.swing.JFrame {
 
         menu_file.setBackground(new java.awt.Color(187, 195, 164));
         menu_file.setText("File");
+        menu_file.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_fileActionPerformed(evt);
+            }
+        });
 
         menu_file_sample.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menu_file_sample.setBackground(new java.awt.Color(187, 195, 164));
@@ -457,8 +464,14 @@ public class MainWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void menu_file_importActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_file_importActionPerformed
-        // TODO add your handling code here:
-        
+        JFileChooser MyFile = new JFileChooser();
+        int Ret = MyFile.showOpenDialog(null);
+        //if(Ret == JFileChooser.APPROVE_OPTION) {}
+        JOptionPane.showMessageDialog(
+                null,
+                "Error importing the file:\n" + MyFile.getSelectedFile().getAbsolutePath(), 
+                "Error", 
+                JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_menu_file_importActionPerformed
 
     private void menu_file_sampleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_file_sampleActionPerformed
@@ -476,7 +489,14 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_menu_file_sampleActionPerformed
 
     private void menu_file_exportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_file_exportActionPerformed
-        // TODO add your handling code here:
+        JFileChooser MyFile = new JFileChooser();
+        int Ret = MyFile.showSaveDialog(null);
+        //if(Ret == JFileChooser.APPROVE_OPTION) {}
+        JOptionPane.showMessageDialog(
+                null,
+                "Error exporting the file:\n" + MyFile.getSelectedFile().getAbsolutePath(), 
+                "Error", 
+                JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_menu_file_exportActionPerformed
 
     private void menu_file_quitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_file_quitActionPerformed
@@ -564,6 +584,10 @@ public class MainWindow extends javax.swing.JFrame {
     private void main_addEntriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_main_addEntriesActionPerformed
         requestEntry();
     }//GEN-LAST:event_main_addEntriesActionPerformed
+
+    private void menu_fileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_fileActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menu_fileActionPerformed
 
     /**
      * @param args the command line arguments

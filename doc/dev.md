@@ -45,7 +45,6 @@
       - Tabbed pane tab selection and Menu/View/Wallet radio buttons also affects "show all" window.
    2. Secondary -> Main
       - Tabbed pane tab selection in "show all" window also affects main tabbed pane and Menu/View/Wallet radio buttons.
-      - Add entries button opens secondary window (allows multiple entries)
    3. Secondary -> Secondary
       - Menu/view/Customize view opens a secondary window that modifies appearance in every other window (including main window and secondary ones).
 
@@ -56,11 +55,13 @@
 
 
 3. Dialogs
-   1. Use JOptionPane for confirmation on "delete entry" and "delete all" options.
+   1. Use JOptionPane 
+      - Import/Export csv always gives an error using JOptionPane.
+      - For confirmation on "delete entry" and "delete all" options.
    2. Use predefined dialogs
       - Use file chooser for importing and exporting csv.
       - Use color chooser in "CustomView" window.
-   3. Mod. entry button opens a custom dialog (allows only one entry).
+   3. Add entry button opens a custom dialog (allows only one entry).
 
 
 4. Graphics (**some charts window**)
@@ -88,7 +89,7 @@
 - [x] (2.4) The initial window is not the main window.
 
 ### Dialogs
-- [ ] (3.1) A dialog using JOptionPane.
+- [x] (3.1) A dialog using JOptionPane.
 - [x] (3.2) A predefined dialog (such as choosing files or colour).
 - [x] (3.3) A user dialog asking the user for any information which is used in one of the 
 windows
@@ -105,8 +106,8 @@ windows
 - Add funtionality to menu bar
   - File
     - [x] Open sample
-    - [ ] Import from csv
-    - [ ] Export in csv
+    - [x] Import from csv
+    - [x] Export in csv
     - [x] Quit
   - Edit
     - [ ] Auto-save
