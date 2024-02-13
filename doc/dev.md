@@ -4,7 +4,6 @@
 1. Window, components & events
    1. Main windown menu bar:
       - File
-        - Open
         - Open sample
         - Import from csv
         - Export in csv
@@ -33,9 +32,8 @@
         - Wallet synchronized with the tabbed pannel.
     
    4. Keyboard restrictions
-      - Only allows alphanumeric values in description.
-      - Only allows +/- and digits in mov.
-      - Only allows 20 char in description.
+      - Only allows digits and one dot in the amount.
+      - Only allows letters and numbers in the tag
   
    5. Dynamic tables inside each element (all/expenses/income) of the tabbed pannel.
       - Modified with buttons left (Add, delete, Mod)
@@ -106,7 +104,6 @@ windows
 
 - Add funtionality to menu bar
   - File
-    - [ ] Open
     - [x] Open sample
     - [ ] Import from csv
     - [ ] Export in csv
@@ -115,7 +112,7 @@ windows
     - [ ] Auto-save
     - [ ] Save to cloud
     - [ ] Undo
-    - [ ] Add entry
+    - [x] Add entry
     - [x] Clear all entries
   - View
     - [x] Wallet -> Radial (Total, Expenses, Income)
@@ -125,7 +122,7 @@ windows
     - [ ] About (link to github readme)
   
 - Add functionality to buttons
-  - [ ] Add entry
+  - [x] Add entry
   - [ ] Delete entry
   - [ ] Modify entry
   - [x] Show All

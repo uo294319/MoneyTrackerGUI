@@ -33,6 +33,7 @@ public class MainWindow extends javax.swing.JFrame {
         
         this.showAllWindow = new ShowAllWindow(this);
         this.customViewWindow = new CustomViewWindow(this);
+        this.addEntryDialog = new AddEntryDialog(this, true);
     }
     
 
@@ -64,7 +65,6 @@ public class MainWindow extends javax.swing.JFrame {
         main_modEntry = new javax.swing.JButton();
         menu = new javax.swing.JMenuBar();
         menu_file = new javax.swing.JMenu();
-        menu_file_open = new javax.swing.JMenuItem();
         menu_file_sample = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         menu_file_import = new javax.swing.JMenuItem();
@@ -283,16 +283,6 @@ public class MainWindow extends javax.swing.JFrame {
         menu_file.setBackground(new java.awt.Color(187, 195, 164));
         menu_file.setText("File");
 
-        menu_file_open.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        menu_file_open.setBackground(new java.awt.Color(187, 195, 164));
-        menu_file_open.setText("Open");
-        menu_file_open.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu_file_openActionPerformed(evt);
-            }
-        });
-        menu_file.add(menu_file_open);
-
         menu_file_sample.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menu_file_sample.setBackground(new java.awt.Color(187, 195, 164));
         menu_file_sample.setText("Open sample");
@@ -471,10 +461,6 @@ public class MainWindow extends javax.swing.JFrame {
         
     }//GEN-LAST:event_menu_file_importActionPerformed
 
-    private void menu_file_openActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_file_openActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menu_file_openActionPerformed
-
     private void menu_file_sampleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_file_sampleActionPerformed
         // TODO add your handling code here:
         
@@ -499,7 +485,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_menu_file_quitActionPerformed
     
     private void menu_edit_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_edit_addActionPerformed
-        // TODO add your handling code here:
+        requestEntry();
     }//GEN-LAST:event_menu_edit_addActionPerformed
 
     private void menu_view_wallet_totalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_view_wallet_totalActionPerformed
@@ -532,6 +518,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void menu_edit_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_edit_clearActionPerformed
         // TODO add your handling code here:
         this.clearTables();
+        this.refreshTotal();
     }//GEN-LAST:event_menu_edit_clearActionPerformed
 
     private void menu_help_docActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_help_docActionPerformed
@@ -575,7 +562,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_menu_view_customActionPerformed
 
     private void main_addEntriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_main_addEntriesActionPerformed
-        // TODO add your handling code here:
+        requestEntry();
     }//GEN-LAST:event_main_addEntriesActionPerformed
 
     /**
@@ -614,6 +601,14 @@ public class MainWindow extends javax.swing.JFrame {
         });
     }
     
+    private void requestEntry() {
+        if(this.addEntryDialog.showDialog())
+            this.addEntry(
+                    this.addEntryDialog.amount,
+                    this.addEntryDialog.tag
+            );
+    }
+    
     protected ShowAllWindow getShowAllWindow() {
         return this.showAllWindow;
     }
@@ -642,9 +637,13 @@ public class MainWindow extends javax.swing.JFrame {
             else
                 TableUtils.addEntryToTable(this.wallet_income_table, quantity, tag);
             
-            this.main_total.setText(String.valueOf(this.getAbsoluteTotal()));
+            refreshTotal();
         }
 
+    }
+    
+    protected void refreshTotal() {
+        this.main_total.setText(String.valueOf(this.getAbsoluteTotal()));
     }
     
     protected void clearTables() {
@@ -688,6 +687,7 @@ public class MainWindow extends javax.swing.JFrame {
     protected ShowAllWindow showAllWindow;
     protected WelcomeWindow welcomeWindow;
     protected CustomViewWindow customViewWindow;
+    protected AddEntryDialog addEntryDialog;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     protected javax.swing.JMenuItem jMenuItem1;
@@ -712,7 +712,6 @@ public class MainWindow extends javax.swing.JFrame {
     protected javax.swing.JMenu menu_file;
     protected javax.swing.JMenuItem menu_file_export;
     protected javax.swing.JMenuItem menu_file_import;
-    protected javax.swing.JMenuItem menu_file_open;
     protected javax.swing.JMenuItem menu_file_quit;
     protected javax.swing.JMenuItem menu_file_sample;
     protected javax.swing.JMenu menu_help;

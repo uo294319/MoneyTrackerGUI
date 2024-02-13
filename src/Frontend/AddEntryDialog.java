@@ -19,23 +19,17 @@ public class AddEntryDialog extends javax.swing.JDialog {
         setLocation(parent.getLocation());
     }
     
-    /**
-     * @return true if entry added, false otherwise
-     */
     public boolean showDialog() {
         this.initDialog();
         this.setVisible(true);
-        return this.valueAdded;
+        return this.entryReady;
     }
     
     private void initDialog() {
-        this.amount = this.DEFAULT_AMOUNT;
-        this.tag = this.DEFAULT_TAG;
-        this.valueAdded = false;
+        this.entryReady = false;
+        this.mainPanel_amount.setText("");
+        this.mainPanel_tag.setText("");
     }
-    
-    
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,14 +39,17 @@ public class AddEntryDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        type = new javax.swing.ButtonGroup();
         mainPanel = new javax.swing.JPanel();
         mainPanel_Title = new javax.swing.JLabel();
         mainPanel_amountDescription = new javax.swing.JLabel();
         mainPanel_amount = new javax.swing.JTextField();
         mainPanel_tag = new javax.swing.JTextField();
         mainPanel_tagDescription = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        mainPanel_add = new javax.swing.JButton();
+        mainPanel_cancel = new javax.swing.JButton();
+        mainPanel_radio_income = new javax.swing.JRadioButton();
+        mainPanel_radio_expense = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -78,16 +75,38 @@ public class AddEntryDialog extends javax.swing.JDialog {
                 mainPanel_tagActionPerformed(evt);
             }
         });
+        mainPanel_tag.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                mainPanel_tagKeyTyped(evt);
+            }
+        });
 
         mainPanel_tagDescription.setText("Specify a tag");
 
-        jButton1.setBackground(new java.awt.Color(179, 163, 152));
-        jButton1.setText("Add");
-        jButton1.setBorder(null);
+        mainPanel_add.setBackground(new java.awt.Color(179, 163, 152));
+        mainPanel_add.setText("Add");
+        mainPanel_add.setBorder(null);
+        mainPanel_add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainPanel_addActionPerformed(evt);
+            }
+        });
 
-        jButton2.setBackground(new java.awt.Color(179, 163, 152));
-        jButton2.setText("Cancel");
-        jButton2.setBorder(null);
+        mainPanel_cancel.setBackground(new java.awt.Color(179, 163, 152));
+        mainPanel_cancel.setText("Cancel");
+        mainPanel_cancel.setBorder(null);
+        mainPanel_cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainPanel_cancelActionPerformed(evt);
+            }
+        });
+
+        type.add(mainPanel_radio_income);
+        mainPanel_radio_income.setSelected(true);
+        mainPanel_radio_income.setText("Income");
+
+        type.add(mainPanel_radio_expense);
+        mainPanel_radio_expense.setText("Expense");
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
@@ -110,16 +129,26 @@ public class AddEntryDialog extends javax.swing.JDialog {
                                 .addGap(18, 18, 18)
                                 .addComponent(mainPanel_amount))
                             .addGroup(mainPanelLayout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(mainPanel_add, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap())))
+                                .addComponent(mainPanel_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(mainPanelLayout.createSequentialGroup()
+                                .addComponent(mainPanel_radio_income)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addComponent(mainPanel_radio_expense)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(mainPanel_Title)
+                .addGap(18, 18, 18)
+                .addComponent(mainPanel_radio_income)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(mainPanel_radio_expense)
                 .addGap(18, 18, 18)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mainPanel_amountDescription)
@@ -130,8 +159,8 @@ public class AddEntryDialog extends javax.swing.JDialog {
                     .addComponent(mainPanel_tag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(mainPanel_add, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mainPanel_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -151,7 +180,7 @@ public class AddEntryDialog extends javax.swing.JDialog {
 
     private void mainPanel_amountKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mainPanel_amountKeyPressed
         // TODO add your handling code here:
-               
+        
     }//GEN-LAST:event_mainPanel_amountKeyPressed
 
     private void mainPanel_tagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainPanel_tagActionPerformed
@@ -166,6 +195,33 @@ public class AddEntryDialog extends javax.swing.JDialog {
                 evt.consume();
         } 
     }//GEN-LAST:event_mainPanel_amountKeyTyped
+
+    private void mainPanel_tagKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mainPanel_tagKeyTyped
+        if(!Character.isLetterOrDigit(evt.getKeyChar()))
+            evt.consume();
+    }//GEN-LAST:event_mainPanel_tagKeyTyped
+
+    private void mainPanel_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainPanel_cancelActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_mainPanel_cancelActionPerformed
+
+    private void mainPanel_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainPanel_addActionPerformed
+        try {
+            this.amount = Double.parseDouble(this.mainPanel_amount.getText());
+            
+            if(this.mainPanel_radio_expense.isSelected())
+                this.amount *= -1;
+            
+            this.tag = this.mainPanel_tag.getText();
+            
+            this.entryReady = isEntryReady();
+            
+        } catch (NumberFormatException e) {
+            System.err.print(e);
+        }
+        
+        this.setVisible(false);
+    }//GEN-LAST:event_mainPanel_addActionPerformed
 
     /**
      * @param args the command line arguments
@@ -208,23 +264,25 @@ public class AddEntryDialog extends javax.swing.JDialog {
             }
         });
     }
+    
+    private boolean isEntryReady() {
+        return this.amount != 0 && !this.tag.isBlank();
+    }
 
-    private final double DEFAULT_AMOUNT = 0;
-    private final String DEFAULT_TAG = "<Tag>";
-    
-    private double amount;
-    private String tag;
-    
-    private boolean valueAdded;
-    
+    private boolean entryReady;
+    protected double amount;
+    protected String tag;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JLabel mainPanel_Title;
+    private javax.swing.JButton mainPanel_add;
     private javax.swing.JTextField mainPanel_amount;
     private javax.swing.JLabel mainPanel_amountDescription;
+    private javax.swing.JButton mainPanel_cancel;
+    private javax.swing.JRadioButton mainPanel_radio_expense;
+    private javax.swing.JRadioButton mainPanel_radio_income;
     private javax.swing.JTextField mainPanel_tag;
     private javax.swing.JLabel mainPanel_tagDescription;
+    private javax.swing.ButtonGroup type;
     // End of variables declaration//GEN-END:variables
 }
