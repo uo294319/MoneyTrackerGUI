@@ -13,7 +13,7 @@
         - Auto-save
         - Save to cloud
         - Undo
-        - Add entries
+        - Add entry
         - Clear all entries
       - View
         - Wallet -> Radial button (All, Expenses, Income)
@@ -80,7 +80,7 @@
 - [x] (1.1) A Menu bar including menu items and sub-menus
 - [x] (1.2) Components on a layout which is not the default one.
 - [x] (1.3) Events: Components are modified when the user does an action.
-- [ ] (1.4) Keyboard events
+- [x] (1.4) Keyboard events
 - [x] (1.5) Update components with a variable number of elements.
 
 ### Multiple windows
@@ -92,7 +92,7 @@
 ### Dialogs
 - [ ] (3.1) A dialog using JOptionPane.
 - [x] (3.2) A predefined dialog (such as choosing files or colour).
-- [ ] (3.3) A user dialog asking the user for any information which is used in one of the 
+- [x] (3.3) A user dialog asking the user for any information which is used in one of the 
 windows
 
 ### Graphics
@@ -115,17 +115,17 @@ windows
     - [ ] Auto-save
     - [ ] Save to cloud
     - [ ] Undo
-    - [ ] Add entries
+    - [ ] Add entry
     - [x] Clear all entries
   - View
     - [x] Wallet -> Radial (Total, Expenses, Income)
-    - [ ] Customize view
+    - [x] Customize view
   - Help
     - [ ] Documentation (link to github docs)
     - [ ] About (link to github readme)
   
 - Add functionality to buttons
-  - [ ] Add entries
+  - [ ] Add entry
   - [ ] Delete entry
   - [ ] Modify entry
   - [x] Show All

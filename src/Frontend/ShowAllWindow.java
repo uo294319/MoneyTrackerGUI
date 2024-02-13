@@ -5,24 +5,32 @@
 package Frontend;
 
 import java.awt.Color;
+import java.awt.Point;
 
 /**
  *
  * @author uo294319
  */
-public class ShowAll extends javax.swing.JFrame {
+public class ShowAllWindow extends javax.swing.JFrame {
 
     /**
      * Creates new form ShowAll
      */
-    public ShowAll() {
+    public ShowAllWindow() {
         initComponents();
         setLocationRelativeTo(null);
     }
     
-    public ShowAll(Main main) {
+    public ShowAllWindow(MainWindow main) {
         this();
         this.main = main;
+        
+        Point loc = main.getLocation() ;
+        this.setLocation(
+                loc.x + main.getWidth(),
+                loc.y
+        );
+        
         this.firstTabStateChange = true;
         syncTables();
     }
@@ -56,6 +64,7 @@ public class ShowAll extends javax.swing.JFrame {
         tabbedPane_expenses_table = new javax.swing.JTable();
 
         setMinimumSize(new java.awt.Dimension(225, 150));
+        setPreferredSize(new java.awt.Dimension(400, 675));
 
         tabbedPane.setBackground(new java.awt.Color(187, 195, 164));
         tabbedPane.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -213,20 +222,21 @@ public class ShowAll extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ShowAll.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ShowAllWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ShowAll.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ShowAllWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ShowAll.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ShowAllWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ShowAll.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ShowAllWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ShowAll().setVisible(true);
+                new ShowAllWindow().setVisible(true);
             }
         });
     }
@@ -244,7 +254,7 @@ public class ShowAll extends javax.swing.JFrame {
     }
     
     
-    private Main main;
+    private MainWindow main;
     private boolean firstTabStateChange;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JTabbedPane tabbedPane;

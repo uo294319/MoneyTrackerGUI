@@ -5,18 +5,19 @@
 package Frontend;
 
 import java.awt.Color;
+import java.awt.Point;
 import javax.swing.JColorChooser;
 
 /**
  *
  * @author angel
  */
-public class CustomView extends javax.swing.JFrame {
+public class CustomViewWindow extends javax.swing.JFrame {
 
     /**
      * Creates new form BackgroundColor
      */
-    public CustomView() {
+    public CustomViewWindow() {
         initComponents();
         this.setLocationRelativeTo(null);
         
@@ -26,9 +27,14 @@ public class CustomView extends javax.swing.JFrame {
         this.resetColors();
     }
     
-    public CustomView(Main main) {
+    public CustomViewWindow(MainWindow main) {
         this();
         this.mainWindow = main;
+        Point loc = main.getLocation() ;
+        this.setLocation(
+                loc.x,
+                loc.y + main.getHeight()
+        );
     }
 
     /**
@@ -239,21 +245,23 @@ public class CustomView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CustomView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomViewWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CustomView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomViewWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CustomView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomViewWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CustomView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomViewWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CustomView().setVisible(true);
+                new CustomViewWindow().setVisible(true);
             }
         });
     }
@@ -297,7 +305,7 @@ public class CustomView extends javax.swing.JFrame {
     private Color actualBack;
     private Color actualButton;
     
-    private Main mainWindow;
+    private MainWindow mainWindow;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel mainPanel;

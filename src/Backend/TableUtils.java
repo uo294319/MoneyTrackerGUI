@@ -11,7 +11,11 @@ import static Backend.Utils.formatQuantity;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
+ * This class contains some util functions that work with a table model
+ * ensuring that the correct format is providen.
+ * 
+ * Changes in the tables model must be done ONLY in this class.
+ * 
  * @author uo294319
  */
 public class TableUtils {

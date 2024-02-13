@@ -14,12 +14,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author angel
  */
-public class Main extends javax.swing.JFrame {
+public class MainWindow extends javax.swing.JFrame {
 
     /**
      * Creates new form Main
      */
-    public Main() {
+    public MainWindow() {
         
         this.initComponents();
         this.setLocationRelativeTo(null);
@@ -28,11 +28,11 @@ public class Main extends javax.swing.JFrame {
         TableUtils.configTable(this.wallet_income_table);
         TableUtils.configTable(this.wallet_expenses_table);
         
-        this.welcomeWindow = new Welcome(this);
+        this.welcomeWindow = new WelcomeWindow(this);
         this.welcomeWindow.setVisible(true);
         
-        this.showAllWindow = new ShowAll(this);
-        this.backgroundColor = new CustomView(this);
+        this.showAllWindow = new ShowAllWindow(this);
+        this.customViewWindow = new CustomViewWindow(this);
     }
     
 
@@ -255,8 +255,13 @@ public class Main extends javax.swing.JFrame {
         mainPanel.add(mainPanel_disclaimer, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 314, 142, 30));
 
         main_addEntries.setBackground(new java.awt.Color(179, 163, 152));
-        main_addEntries.setText("Add entries");
+        main_addEntries.setText("Add entry");
         main_addEntries.setBorder(null);
+        main_addEntries.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                main_addEntriesActionPerformed(evt);
+            }
+        });
         mainPanel.add(main_addEntries, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 160, 36));
 
         main_deleteEntry.setBackground(new java.awt.Color(179, 163, 152));
@@ -365,7 +370,7 @@ public class Main extends javax.swing.JFrame {
 
         menu_edit_add.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menu_edit_add.setBackground(new java.awt.Color(187, 195, 164));
-        menu_edit_add.setText("Add entries");
+        menu_edit_add.setText("Add entry");
         menu_edit_add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menu_edit_addActionPerformed(evt);
@@ -463,6 +468,7 @@ public class Main extends javax.swing.JFrame {
     
     private void menu_file_importActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_file_importActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_menu_file_importActionPerformed
 
     private void menu_file_openActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_file_openActionPerformed
@@ -565,8 +571,12 @@ public class Main extends javax.swing.JFrame {
 
     private void menu_view_customActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_view_customActionPerformed
         // TODO add your handling code here:
-        this.backgroundColor.setVisible(true);
+        this.customViewWindow.setVisible(true);
     }//GEN-LAST:event_menu_view_customActionPerformed
+
+    private void main_addEntriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_main_addEntriesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_main_addEntriesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -585,25 +595,26 @@ public class Main extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Main().setVisible(false);
+                new MainWindow().setVisible(false);
             }
         });
     }
     
-    protected ShowAll getShowAllWindow() {
+    protected ShowAllWindow getShowAllWindow() {
         return this.showAllWindow;
     }
     
@@ -674,9 +685,9 @@ public class Main extends javax.swing.JFrame {
     }
 
     
-    protected ShowAll showAllWindow;
-    protected Welcome welcomeWindow;
-    protected CustomView backgroundColor;
+    protected ShowAllWindow showAllWindow;
+    protected WelcomeWindow welcomeWindow;
+    protected CustomViewWindow customViewWindow;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     protected javax.swing.JMenuItem jMenuItem1;
