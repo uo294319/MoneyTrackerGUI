@@ -59,7 +59,9 @@
 
 3. Dialogs
    1. Use JOptionPane for confirmation on "delete entry" and "delete all" options.
-   2. Use file chooser for importing and exporting csv.
+   2. Use predefined dialogs
+      - Use file chooser for importing and exporting csv.
+      - Use color chooser in "CustomView" window.
    3. Mod. entry button opens a custom dialog (allows only one entry).
 
 
@@ -84,12 +86,12 @@
 ### Multiple windows
 - [x] (2.1) The main window changes/updates components of a secondary window.
 - [x] (2.2) A secondary window changes/updates components of the main window.
-- [ ] (2.3) A secondary window changes/updates components of another secondary window.
+- [x] (2.3) A secondary window changes/updates components of another secondary window.
 - [x] (2.4) The initial window is not the main window.
 
 ### Dialogs
 - [ ] (3.1) A dialog using JOptionPane.
-- [ ] (3.2) A predefined dialog (such as choosing files or colour).
+- [x] (3.2) A predefined dialog (such as choosing files or colour).
 - [ ] (3.3) A user dialog asking the user for any information which is used in one of the 
 windows
 
