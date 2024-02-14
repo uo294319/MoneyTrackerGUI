@@ -4,6 +4,8 @@
  */
 package Backend;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author uo294319
@@ -13,5 +15,13 @@ public class Utils {
         String sign = (quantity >= 0) ? "+" : "-";
         quantity = Math.abs(quantity);
         return sign + String.valueOf(quantity);
+    }
+    
+    public static void showErrorUnimplemented() {
+        JOptionPane.showMessageDialog(
+                    null,
+                    "Error. Functionality not implemented yet.", 
+                    "Error", 
+                    JOptionPane.ERROR_MESSAGE);
     }
 }

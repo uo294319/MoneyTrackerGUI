@@ -161,6 +161,9 @@
               <Border info="null"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mainPanel_backActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="mainPanel_table">
           <Properties>
@@ -186,6 +189,9 @@
               <Border info="null"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mainPanel_buttonActionPerformed"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JPanel" name="mainPanel_buttonPreview">
           <Properties>

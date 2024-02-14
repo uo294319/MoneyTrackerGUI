@@ -4,6 +4,7 @@
  */
 package Frontend;
 
+import Backend.Utils;
 import java.awt.Color;
 import java.awt.Point;
 import javax.swing.JColorChooser;
@@ -24,6 +25,10 @@ public class CustomViewWindow extends javax.swing.JFrame {
         this.mainPanel_apply.setEnabled(false);
         this.mainPanel_reset.setEnabled(false);
         
+        this.actualTable = this.DEFAULT_TABLE;
+        this.actualBack = this.DEFAULT_BACK;
+        this.actualButton = this.DEFAULT_BUTTON;
+                
         this.resetColors();
     }
     
@@ -91,6 +96,11 @@ public class CustomViewWindow extends javax.swing.JFrame {
         mainPanel_back.setBackground(new java.awt.Color(179, 163, 152));
         mainPanel_back.setText("Change Background Color");
         mainPanel_back.setBorder(null);
+        mainPanel_back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainPanel_backActionPerformed(evt);
+            }
+        });
 
         mainPanel_table.setBackground(new java.awt.Color(179, 163, 152));
         mainPanel_table.setText("Change Tables Color");
@@ -104,6 +114,11 @@ public class CustomViewWindow extends javax.swing.JFrame {
         mainPanel_button.setBackground(new java.awt.Color(179, 163, 152));
         mainPanel_button.setText("Change Buttons Color");
         mainPanel_button.setBorder(null);
+        mainPanel_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainPanel_buttonActionPerformed(evt);
+            }
+        });
 
         mainPanel_buttonPreview.setBackground(new java.awt.Color(179, 163, 152));
         mainPanel_buttonPreview.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -220,13 +235,27 @@ public class CustomViewWindow extends javax.swing.JFrame {
 
     private void mainPanel_tableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainPanel_tableActionPerformed
         // TODO add your handling code here:
-        this.modTable = JColorChooser.showDialog(
+        Color tmp = JColorChooser.showDialog(
                 null,
                 "Choose a table colour",
                 modTable);
         
-        this.refresh();
+        if(tmp != null)
+        {
+            this.modTable = tmp;
+            this.refresh();
+        }
     }//GEN-LAST:event_mainPanel_tableActionPerformed
+
+    private void mainPanel_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainPanel_backActionPerformed
+        // Unimplemented
+        Utils.showErrorUnimplemented();
+    }//GEN-LAST:event_mainPanel_backActionPerformed
+
+    private void mainPanel_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainPanel_buttonActionPerformed
+        // Unimplemented
+        Utils.showErrorUnimplemented();
+    }//GEN-LAST:event_mainPanel_buttonActionPerformed
 
     /**
      * @param args the command line arguments
