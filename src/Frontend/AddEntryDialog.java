@@ -4,6 +4,8 @@
  */
 package Frontend;
 
+import java.awt.Color;
+
 /**
  *
  * @author angel
@@ -50,6 +52,8 @@ public class AddEntryDialog extends javax.swing.JDialog {
         mainPanel_cancel = new javax.swing.JButton();
         mainPanel_radio_income = new javax.swing.JRadioButton();
         mainPanel_radio_expense = new javax.swing.JRadioButton();
+        mainPanel_iconBack = new javax.swing.JPanel();
+        mainPanel_icon = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -102,11 +106,41 @@ public class AddEntryDialog extends javax.swing.JDialog {
         });
 
         type.add(mainPanel_radio_income);
+        mainPanel_radio_income.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         mainPanel_radio_income.setSelected(true);
         mainPanel_radio_income.setText("Income");
+        mainPanel_radio_income.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainPanel_radio_incomeActionPerformed(evt);
+            }
+        });
 
         type.add(mainPanel_radio_expense);
+        mainPanel_radio_expense.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         mainPanel_radio_expense.setText("Expense");
+        mainPanel_radio_expense.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainPanel_radio_expenseActionPerformed(evt);
+            }
+        });
+
+        mainPanel_iconBack.setBackground(new java.awt.Color(220, 255, 183));
+        mainPanel_iconBack.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        mainPanel_icon.setFont(new java.awt.Font("Segoe UI Black", 1, 36)); // NOI18N
+        mainPanel_icon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        mainPanel_icon.setText("+");
+
+        javax.swing.GroupLayout mainPanel_iconBackLayout = new javax.swing.GroupLayout(mainPanel_iconBack);
+        mainPanel_iconBack.setLayout(mainPanel_iconBackLayout);
+        mainPanel_iconBackLayout.setHorizontalGroup(
+            mainPanel_iconBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(mainPanel_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        mainPanel_iconBackLayout.setVerticalGroup(
+            mainPanel_iconBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(mainPanel_icon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
@@ -125,20 +159,20 @@ public class AddEntryDialog extends javax.swing.JDialog {
                                 .addGap(18, 18, 18)
                                 .addComponent(mainPanel_tag))
                             .addGroup(mainPanelLayout.createSequentialGroup()
-                                .addComponent(mainPanel_amountDescription)
-                                .addGap(18, 18, 18)
-                                .addComponent(mainPanel_amount))
-                            .addGroup(mainPanelLayout.createSequentialGroup()
                                 .addComponent(mainPanel_add, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(mainPanel_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(mainPanelLayout.createSequentialGroup()
-                                .addComponent(mainPanel_radio_income)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addComponent(mainPanel_radio_expense)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                .addComponent(mainPanel_amountDescription)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(mainPanel_amount, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(mainPanelLayout.createSequentialGroup()
+                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(mainPanel_radio_expense)
+                                    .addComponent(mainPanel_radio_income))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(mainPanel_iconBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,9 +180,12 @@ public class AddEntryDialog extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(mainPanel_Title)
                 .addGap(18, 18, 18)
-                .addComponent(mainPanel_radio_income)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mainPanel_radio_expense)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addComponent(mainPanel_radio_income, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(mainPanel_radio_expense))
+                    .addComponent(mainPanel_iconBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mainPanel_amountDescription)
@@ -217,11 +254,22 @@ public class AddEntryDialog extends javax.swing.JDialog {
             this.entryReady = isEntryReady();
             
         } catch (NumberFormatException e) {
-            System.err.print(e);
+            System.err.print("Invalid amount: " + e);
         }
         
         this.setVisible(false);
     }//GEN-LAST:event_mainPanel_addActionPerformed
+
+    private void mainPanel_radio_incomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainPanel_radio_incomeActionPerformed
+        // TODO add your handling code here:
+        this.mainPanel_icon.setText("+");
+        this.mainPanel_iconBack.setBackground(new Color(220, 255, 183));
+    }//GEN-LAST:event_mainPanel_radio_incomeActionPerformed
+
+    private void mainPanel_radio_expenseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainPanel_radio_expenseActionPerformed
+        this.mainPanel_icon.setText("-");
+        this.mainPanel_iconBack.setBackground(new Color(255, 104, 104));
+    }//GEN-LAST:event_mainPanel_radio_expenseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -279,6 +327,8 @@ public class AddEntryDialog extends javax.swing.JDialog {
     private javax.swing.JTextField mainPanel_amount;
     private javax.swing.JLabel mainPanel_amountDescription;
     private javax.swing.JButton mainPanel_cancel;
+    private javax.swing.JLabel mainPanel_icon;
+    private javax.swing.JPanel mainPanel_iconBack;
     private javax.swing.JRadioButton mainPanel_radio_expense;
     private javax.swing.JRadioButton mainPanel_radio_income;
     private javax.swing.JTextField mainPanel_tag;

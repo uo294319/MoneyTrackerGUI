@@ -111,13 +111,6 @@ public class MainWindow extends javax.swing.JFrame {
                 main_tabbedPanel_walletStateChanged(evt);
             }
         });
-        main_tabbedPanel_wallet.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-                main_tabbedPanel_walletCaretPositionChanged(evt);
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-            }
-        });
 
         wallet_total_scroll.setBackground(new java.awt.Color(187, 195, 164));
 
@@ -148,11 +141,6 @@ public class MainWindow extends javax.swing.JFrame {
         wallet_total_table.setDoubleBuffered(true);
         wallet_total_table.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         wallet_total_table.getTableHeader().setReorderingAllowed(false);
-        wallet_total_table.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                wallet_total_tablePropertyChange(evt);
-            }
-        });
         wallet_total_scroll.setViewportView(wallet_total_table);
 
         main_tabbedPanel_wallet.addTab("Total", wallet_total_scroll);
@@ -284,11 +272,6 @@ public class MainWindow extends javax.swing.JFrame {
 
         menu_file.setBackground(new java.awt.Color(187, 195, 164));
         menu_file.setText("File");
-        menu_file.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu_fileActionPerformed(evt);
-            }
-        });
 
         menu_file_sample.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menu_file_sample.setBackground(new java.awt.Color(187, 195, 164));
@@ -325,11 +308,7 @@ public class MainWindow extends javax.swing.JFrame {
         menu_file_quit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menu_file_quit.setBackground(new java.awt.Color(187, 195, 164));
         menu_file_quit.setText("Quit");
-        menu_file_quit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu_file_quitActionPerformed(evt);
-            }
-        });
+
         menu_file.add(menu_file_quit);
 
         menu.add(menu_file);
@@ -339,30 +318,15 @@ public class MainWindow extends javax.swing.JFrame {
 
         menu_edit_auto.setSelected(true);
         menu_edit_auto.setText("Auto-save");
-        menu_edit_auto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu_edit_autoActionPerformed(evt);
-            }
-        });
         menu_edit.add(menu_edit_auto);
 
         jCheckBoxMenuItem1.setSelected(true);
         jCheckBoxMenuItem1.setText("Save to cloud");
-        jCheckBoxMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxMenuItem1ActionPerformed(evt);
-            }
-        });
         menu_edit.add(jCheckBoxMenuItem1);
         menu_edit.add(jSeparator3);
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem1.setText("Undo");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
         menu_edit.add(jMenuItem1);
 
         menu_edit_add.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_DOWN_MASK));
@@ -440,20 +404,10 @@ public class MainWindow extends javax.swing.JFrame {
 
         menu_help_doc.setBackground(new java.awt.Color(187, 195, 164));
         menu_help_doc.setText("Documentation");
-        menu_help_doc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu_help_docActionPerformed(evt);
-            }
-        });
         menu_help.add(menu_help_doc);
 
         menu_help_about.setBackground(new java.awt.Color(187, 195, 164));
         menu_help_about.setText("About");
-        menu_help_about.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu_help_aboutActionPerformed(evt);
-            }
-        });
         menu_help.add(menu_help_about);
 
         menu.add(menu_help);
@@ -466,12 +420,13 @@ public class MainWindow extends javax.swing.JFrame {
     private void menu_file_importActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_file_importActionPerformed
         JFileChooser MyFile = new JFileChooser();
         int Ret = MyFile.showOpenDialog(null);
-        //if(Ret == JFileChooser.APPROVE_OPTION) {}
-        JOptionPane.showMessageDialog(
-                null,
-                "Error importing the file:\n" + MyFile.getSelectedFile().getAbsolutePath(), 
-                "Error", 
-                JOptionPane.ERROR_MESSAGE);
+        if(Ret == JFileChooser.APPROVE_OPTION) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Error importing the file:\n" + MyFile.getSelectedFile().getAbsolutePath(), 
+                    "Error", 
+                    JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_menu_file_importActionPerformed
 
     private void menu_file_sampleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_file_sampleActionPerformed
@@ -491,18 +446,15 @@ public class MainWindow extends javax.swing.JFrame {
     private void menu_file_exportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_file_exportActionPerformed
         JFileChooser MyFile = new JFileChooser();
         int Ret = MyFile.showSaveDialog(null);
-        //if(Ret == JFileChooser.APPROVE_OPTION) {}
-        JOptionPane.showMessageDialog(
-                null,
-                "Error exporting the file:\n" + MyFile.getSelectedFile().getAbsolutePath(), 
-                "Error", 
-                JOptionPane.ERROR_MESSAGE);
+        if(Ret == JFileChooser.APPROVE_OPTION) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Error exporting the file:\n" + MyFile.getSelectedFile().getAbsolutePath(), 
+                    "Error", 
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_menu_file_exportActionPerformed
 
-    private void menu_file_quitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_file_quitActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-    }//GEN-LAST:event_menu_file_quitActionPerformed
     
     private void menu_edit_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_edit_addActionPerformed
         requestEntry();
@@ -523,44 +475,16 @@ public class MainWindow extends javax.swing.JFrame {
         this.selectWalletIncome();
     }//GEN-LAST:event_menu_view_wallet_incomeActionPerformed
 
-    private void menu_edit_autoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_edit_autoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menu_edit_autoActionPerformed
-
-    private void jCheckBoxMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBoxMenuItem1ActionPerformed
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
     private void menu_edit_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_edit_clearActionPerformed
         // TODO add your handling code here:
         this.clearTables();
         this.refreshTotal();
     }//GEN-LAST:event_menu_edit_clearActionPerformed
 
-    private void menu_help_docActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_help_docActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menu_help_docActionPerformed
-
-    private void menu_help_aboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_help_aboutActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menu_help_aboutActionPerformed
-
-    private void wallet_total_tablePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_wallet_total_tablePropertyChange
-
-    }//GEN-LAST:event_wallet_total_tablePropertyChange
-
     private void main_showAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_main_showAllActionPerformed
         // TODO add your handling code here:
         this.showAllWindow.setVisible(true);
     }//GEN-LAST:event_main_showAllActionPerformed
-
-    private void main_tabbedPanel_walletCaretPositionChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_main_tabbedPanel_walletCaretPositionChanged
-
-    }//GEN-LAST:event_main_tabbedPanel_walletCaretPositionChanged
 
     private void main_tabbedPanel_walletStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_main_tabbedPanel_walletStateChanged
         // TODO add your handling code here:
@@ -577,17 +501,12 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_main_tabbedPanel_walletStateChanged
 
     private void menu_view_customActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_view_customActionPerformed
-        // TODO add your handling code here:
         this.customViewWindow.setVisible(true);
     }//GEN-LAST:event_menu_view_customActionPerformed
 
     private void main_addEntriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_main_addEntriesActionPerformed
         requestEntry();
     }//GEN-LAST:event_main_addEntriesActionPerformed
-
-    private void menu_fileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_fileActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menu_fileActionPerformed
 
     /**
      * @param args the command line arguments
