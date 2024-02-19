@@ -36,6 +36,7 @@ public class MainWindow extends javax.swing.JFrame {
         this.showAllWindow = new ShowAllWindow(this);
         this.customViewWindow = new CustomViewWindow(this);
         this.addEntryDialog = new AddEntryDialog(this, true);
+        this.aboutWindow = new AboutWindow(this);
     }
     
 
@@ -601,8 +602,7 @@ public class MainWindow extends javax.swing.JFrame {
     }
     
     private void menu_help_aboutActionPerformed(java.awt.event.ActionEvent evt) {
-        // Uninplemented
-        Utils.showErrorUnimplemented();
+        this.aboutWindow.setVisible(true);
     }
     
     
@@ -742,6 +742,8 @@ public class MainWindow extends javax.swing.JFrame {
     protected WelcomeWindow welcomeWindow;
     protected CustomViewWindow customViewWindow;
     protected AddEntryDialog addEntryDialog;
+    protected AboutWindow aboutWindow;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JPopupMenu.Separator jSeparator1;
     protected javax.swing.JPopupMenu.Separator jSeparator2;
