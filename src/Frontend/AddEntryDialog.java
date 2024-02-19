@@ -5,6 +5,7 @@
 package Frontend;
 
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -254,7 +255,12 @@ public class AddEntryDialog extends javax.swing.JDialog {
             this.entryReady = isEntryReady();
             
         } catch (NumberFormatException e) {
-            System.err.print("Invalid amount: " + e);
+            System.err.println("Invalid amount: " + e);
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Error: " + e.getMessage(),
+                    "Error", 
+                    JOptionPane.ERROR_MESSAGE);
         }
         
         this.setVisible(false);

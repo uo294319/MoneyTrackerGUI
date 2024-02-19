@@ -477,8 +477,12 @@ public class MainWindow extends javax.swing.JFrame {
         JFileChooser MyFile = new JFileChooser();
         int Ret = MyFile.showOpenDialog(null);
         if(Ret == JFileChooser.APPROVE_OPTION) {
-            
-    }
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Error importing the file:\n" + MyFile.getSelectedFile().getAbsolutePath(), 
+                    "Error", 
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_menu_file_importActionPerformed
 
     private void menu_file_sampleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_file_sampleActionPerformed
