@@ -17,11 +17,11 @@ public class Utils {
         return sign + String.valueOf(quantity);
     }
     
-    public static void showErrorUnimplemented() {
+    public static void showWarningUnimplemented() {
         JOptionPane.showMessageDialog(
                     null,
-                    "Error. Functionality not implemented yet.", 
-                    "Error", 
-                    JOptionPane.ERROR_MESSAGE);
+                    "Functionality not implemented yet.", 
+                    "WARNING", 
+                    JOptionPane.WARNING_MESSAGE);
     }
 }

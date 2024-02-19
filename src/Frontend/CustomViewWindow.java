@@ -249,12 +249,12 @@ public class CustomViewWindow extends javax.swing.JFrame {
 
     private void mainPanel_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainPanel_backActionPerformed
         // Unimplemented
-        Utils.showErrorUnimplemented();
+        Utils.showWarningUnimplemented();
     }//GEN-LAST:event_mainPanel_backActionPerformed
 
     private void mainPanel_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainPanel_buttonActionPerformed
         // Unimplemented
-        Utils.showErrorUnimplemented();
+        Utils.showWarningUnimplemented();
     }//GEN-LAST:event_mainPanel_buttonActionPerformed
 
     /**

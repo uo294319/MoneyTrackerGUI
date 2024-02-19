@@ -22,8 +22,7 @@ public class PaintPanel extends JPanel {
         Spiral;
     }
     
-    private final Color color;
-    
+    private Color color;
     private Shape status;
     private int initX, initY, endX, endY;
     
@@ -48,6 +47,15 @@ public class PaintPanel extends JPanel {
         }
         
     }
+    
+    protected Color getColor() {
+        return this.color;
+    }
+    
+    protected void setColor(Color c) {
+        this.color = c;
+    }
+        
     
     protected void setStaus(Shape s) {
         this.status = s;

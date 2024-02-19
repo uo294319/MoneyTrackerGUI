@@ -18,26 +18,26 @@
         - Wallet -> Radial button (All, Expenses, Income)
         - Customize view
       - Help
-        - Documentation (link to github docs)
-        - About (link to github readme)
+        - Documentation
+        - About
   
    2. Different layouts
       - Both JFrame and mainPanel use AbsoluteLayout.
 
 > [!NOTE]
-> Resize is not allowed as it breaks the distribution of GUI components.
+> Resize is not allowed in some windows as it breaks the distribution of the components.
 
-   3. Actions
-      - View modifies entries shown
-        - Wallet synchronized with the tabbed pannel.
+   3. Events
+      - "View/Wallet" radio buttons are synchronized with the tabbed pannel.
+      - "Open sample" adds some predefined enties to the table
     
-   4. Keyboard restrictions
+   4. Keyboard restrictions (inside add entry window)
       - Only allows digits and one dot in the amount.
-      - Only allows letters and numbers in the tag
+      - Only allows letters and numbers in the tag.
   
    5. Dynamic tables inside each element (all/expenses/income) of the tabbed pannel.
       - Modified with buttons left (Add, delete, Mod)
-      - Also with main menu -> File -> add entry, delete all entries 
+      - Also with main menu -> File -> "Add entry", "Clear all entries". 
 
 1. Multiple windows
    1. Main -> Secondary
@@ -57,21 +57,21 @@
 3. Dialogs
    1. Use JOptionPane 
       - Import/Export csv always gives an error using JOptionPane.
-      - For confirmation on "delete entry" and "delete all" options.
+      - Unimplemented operations as "delete entry" or "modify entry" show a warning message.
    2. Use predefined dialogs
       - Use file chooser for importing and exporting csv.
-      - Use color chooser in "CustomView" window.
-   3. Add entry button opens a custom dialog (allows only one entry).
+      - Use color chooser in "CustomView" window and "About" windows.
+   3. "Add entry" button opens a custom dialog (allows only one entry).
 
 
-4. Graphics (**some charts window**)
-   1. Custom Graphics. Custom Drawing:
-      Create a custom component (e.g., a chart) to visualize financial data.
-      Override the paintComponent method to draw relevant graphics.
-   2. Dynamic Graphics. Change Drawn Elements:
-      Implement methods to update what is being drawn (e.g., highlight specific expenses, adjust chart scales).
-   3. Repainting. Explicit Repainting:
-      Use the repaint() method to refresh custom graphics when data changes.
+4. Graphics
+   1. Custom class & `paint()` method.
+      - "Help/About" opens a window that contains a canvas panel where to draw.
+      - This canvas is an instance of a custom swing JPanel.
+   2. Dynamic Graphics. 
+      - The color of the drawings can be changed.
+   3. Explicit Repainting.
+      - When the color is selected the `repaint` method is called.
 
 ## Requirements Completed
 
@@ -95,9 +95,9 @@
 windows
 
 ### Graphics
-- [ ] (4.1) A child class from a component redefining its paint method.
-- [ ] (4.2) Set methods to change something that is being drawn.
-- [ ] (4.3) Use the method repaint explicitly.
+- [x] (4.1) A child class from a component redefining its paint method.
+- [x] (4.2) Set methods to change something that is being drawn.
+- [x] (4.3) Use the method repaint explicitly.
 
 --- 
 
@@ -120,7 +120,7 @@ windows
     - [x] Customize view
   - Help
     - [ ] Documentation (link to github docs)
-    - [ ] About (link to github readme)
+    - [x] About (link to github readme)
   
 - Add functionality to buttons
   - [x] Add entry

@@ -301,7 +301,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        menu_file_sample.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        menu_file_sample.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menu_file_sample.setBackground(new java.awt.Color(187, 195, 164));
         menu_file_sample.setText("Open sample");
         menu_file_sample.addActionListener(new java.awt.event.ActionListener() {
@@ -560,11 +560,11 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_main_addEntriesActionPerformed
 
     private void main_deleteEntryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_main_deleteEntryActionPerformed
-        Utils.showErrorUnimplemented();
+        Utils.showWarningUnimplemented();
     }//GEN-LAST:event_main_deleteEntryActionPerformed
 
     private void main_modEntryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_main_modEntryActionPerformed
-        Utils.showErrorUnimplemented();
+        Utils.showWarningUnimplemented();
     }//GEN-LAST:event_main_modEntryActionPerformed
 
     private void main_tabbedPanel_walletCaretPositionChanged(java.awt.event.InputMethodEvent evt) {
@@ -593,12 +593,12 @@ public class MainWindow extends javax.swing.JFrame {
     
     private void manu_edit_undoActionPerformed(java.awt.event.ActionEvent evt) {
         // Uninplemented
-        Utils.showErrorUnimplemented();
+        Utils.showWarningUnimplemented();
     }
     
     private void menu_help_docActionPerformed(java.awt.event.ActionEvent evt) {
         // Uninplemented
-        Utils.showErrorUnimplemented();
+        Utils.showWarningUnimplemented();
     }
     
     private void menu_help_aboutActionPerformed(java.awt.event.ActionEvent evt) {
