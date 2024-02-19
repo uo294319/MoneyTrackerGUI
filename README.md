@@ -4,6 +4,8 @@
 Money Tracker is an offline desktop app for managing personal finances.
 It offers a simple interface and allows you to categorize transactions.
 
+![](/doc/assets/demo.PNG)
+
 ## Resources
 - [Development status](/doc/dev.md)
 
