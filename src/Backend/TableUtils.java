@@ -8,6 +8,7 @@ package Backend;
  * Imports
  */
 import static Backend.Utils.formatQuantity;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -35,7 +36,7 @@ public class TableUtils {
         table.setModel(new DefaultTableModel(tmp, 0));
     }
     
-    public static void cleanTable(javax.swing.JTable table) {
+    public static void cleanTable(JTable table) {
         
         DefaultTableModel model = 
                 (DefaultTableModel) table.getModel();
@@ -44,33 +45,63 @@ public class TableUtils {
             model.removeRow(0);
     }
     
-    public static double getRelativeTotal(javax.swing.JTable table) {
+    public static double getTableTotal(JTable table) {
         
         DefaultTableModel model = 
                 (DefaultTableModel) table.getModel();
         
-        if(model.getRowCount() == 0)
-            return 0;
+        if(model.getRowCount() == 0) return 0;
         
-        try {
-            return Double.parseDouble((String) model.getValueAt(0, COLUMN_TOTAL));
-        } catch(NumberFormatException e) {
-            System.err.print(
-                    "Error converting the total of first entry to double: "
-                    + model.getValueAt(0, COLUMN_TOTAL)
-                    + "\n"
-            );
-            return 0;
-        }
+        return getTotalForIndex(model, 0);
     }
     
-    public static void addEntryToTable(javax.swing.JTable table, double quantity, String tag) {
+    private static double getTotalForIndex(DefaultTableModel model, int index) {
+        
+        try {
+            return Double.parseDouble((String) model.getValueAt(index, COLUMN_TOTAL));
+        } catch(NumberFormatException e) {
+            System.err.print(
+                    "Error converting the total of entry [" 
+                    + index + "] to double: "
+                    + model.getValueAt(index, COLUMN_TOTAL) + "\n"
+            );
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.err.print(
+                    "Error. Invalid index: "+ index +"\n"
+            );
+        }
+            
+        return 0;
+    }
+    
+    public static void addEntryToTable(JTable table, double quantity, String tag) {
         
         Object[] tmp = new Object[3];
-        tmp[COLUMN_TOTAL] = formatQuantity(getRelativeTotal(table) + quantity);
+        tmp[COLUMN_TOTAL] = formatQuantity(getTableTotal(table) + quantity);
         tmp[COLUMN_QUANTITY] = formatQuantity(quantity);
         tmp[COLUMN_TAG] = tag;
         
         ((DefaultTableModel) table.getModel()).insertRow(0, tmp);
-    }    
+    }
+    
+    public static void removeEntryFromTable(JTable table, int row) {
+        DefaultTableModel model = 
+                (DefaultTableModel) table.getModel();
+        
+        model.removeRow(row);
+    }
+    
+    public static void recalculateTotal(JTable table) {
+        
+        DefaultTableModel model = 
+                (DefaultTableModel) table.getModel();
+        
+        for(int i = model.getRowCount() - 1; i > -1; i--)
+        {
+            model.setValueAt(
+                    getTotalForIndex(model, i),
+                    i, 
+                    COLUMN_TOTAL);
+        }
+    }
 }

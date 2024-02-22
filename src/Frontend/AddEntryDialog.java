@@ -252,6 +252,10 @@ public class AddEntryDialog extends javax.swing.JDialog {
             
             this.tag = this.mainPanel_tag.getText();
             
+            if(this.tag.isBlank()) {
+                this.tag = "<No tag>";
+            }
+            
             this.entryReady = isEntryReady();
             
         } catch (NumberFormatException e) {

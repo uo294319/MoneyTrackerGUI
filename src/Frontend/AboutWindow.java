@@ -61,7 +61,6 @@ public class AboutWindow extends javax.swing.JFrame {
         mainPanel_title.setText("About");
 
         mainPanel_canvas.setBackground(new java.awt.Color(255, 251, 245));
-        mainPanel_canvas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         mainPanel_canvas.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 mainPanel_canvasMouseDragged(evt);
@@ -81,7 +80,7 @@ public class AboutWindow extends javax.swing.JFrame {
         );
         mainPanel_canvasLayout.setVerticalGroup(
             mainPanel_canvasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 256, Short.MAX_VALUE)
+            .addGap(0, 258, Short.MAX_VALUE)
         );
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Line", "Circle", "Rectangle", "Espiral" }));

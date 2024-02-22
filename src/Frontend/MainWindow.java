@@ -675,7 +675,7 @@ public class MainWindow extends javax.swing.JFrame {
     }
     
     protected double getAbsoluteTotal() {
-        return TableUtils.getRelativeTotal(this.wallet_total_table);
+        return TableUtils.getTableTotal(this.wallet_total_table);
     }
     
     protected void addEntry(double quantity, String tag) {
