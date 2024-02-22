@@ -605,8 +605,7 @@ public class MainWindow extends javax.swing.JFrame {
     }
     
     private void menu_help_docActionPerformed(java.awt.event.ActionEvent evt) {
-        // Uninplemented
-        Utils.showWarningUnimplemented();
+        Utils.openRepo();
     }
     
     private void menu_help_aboutActionPerformed(java.awt.event.ActionEvent evt) {

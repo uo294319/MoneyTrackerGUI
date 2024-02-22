@@ -45,7 +45,7 @@ windows
         - Wallet -> Radio button (All, Expenses, Income)
         - Customize view
       - Help
-        - Documentation (no implementation)
+        - Documentation (Link to github repository)
         - About
   
    2. **Different layouts**
@@ -141,8 +141,8 @@ Secondary windows created are:
     - [x] Wallet -> Radial (Total, Expenses, Income)
     - [x] Customize view
   - Help
-    - [ ] Documentation (link to github docs)
-    - [x] About (link to github readme)
+    - [x] Documentation (link to github docs)
+    - [x] About
   
 - Add functionality to buttons
   - [x] Add entry
