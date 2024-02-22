@@ -96,7 +96,6 @@ public class MainWindow extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         mainPanel.setBackground(new java.awt.Color(198, 220, 186));
         mainPanel.setPreferredSize(new java.awt.Dimension(500, 350));
@@ -287,8 +286,6 @@ public class MainWindow extends javax.swing.JFrame {
         });
         mainPanel.add(main_modEntry, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 160, 36));
 
-        getContentPane().add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
         menu.setBackground(new java.awt.Color(187, 195, 164));
         menu.setBorder(null);
         menu.setBorderPainted(false);
@@ -470,6 +467,17 @@ public class MainWindow extends javax.swing.JFrame {
         menu.add(menu_help);
 
         setJMenuBar(menu);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

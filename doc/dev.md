@@ -1,78 +1,5 @@
 # DEVELOPMENT STATUS
 
-## GUI ideas
-1. Window, components & events
-   1. Main windown menu bar:
-      - File
-        - Open sample
-        - Import from csv
-        - Export in csv
-        - Quit
-      - Edit
-        - Auto-save
-        - Save to cloud
-        - Undo
-        - Add entry
-        - Clear all entries
-      - View
-        - Wallet -> Radial button (All, Expenses, Income)
-        - Customize view
-      - Help
-        - Documentation
-        - About
-  
-   2. Different layouts
-      - Both JFrame and mainPanel use AbsoluteLayout.
-
-> [!NOTE]
-> Resize is not allowed in some windows as it breaks the distribution of the components.
-
-   3. Events
-      - "View/Wallet" radio buttons are synchronized with the tabbed pannel.
-      - "Open sample" adds some predefined enties to the table
-    
-   4. Keyboard restrictions (inside add entry window)
-      - Only allows digits and one dot in the amount.
-      - Only allows letters and numbers in the tag.
-  
-   5. Dynamic tables inside each element (all/expenses/income) of the tabbed pannel.
-      - Modified with buttons left (Add, delete, Mod)
-      - Also with main menu -> File -> "Add entry", "Clear all entries". 
-
-1. Multiple windows
-   1. Main -> Secondary
-      - "Show all" button shows a secondary window with the complete list with income/expenses from main window (same tables model).
-      - Tabbed pane tab selection and Menu/View/Wallet radio buttons also affects "show all" window.
-   2. Secondary -> Main
-      - Tabbed pane tab selection in "show all" window also affects main tabbed pane and Menu/View/Wallet radio buttons.
-   3. Secondary -> Secondary
-      - Menu/view/Customize view opens a secondary window that modifies appearance in every other window (including main window and secondary ones).
-
-> [!NOTE]
-> Only change color for tables was implemented.
-
-   4. Initial window -> Welcome window
-
-
-3. Dialogs
-   1. Use JOptionPane 
-      - Import/Export csv always gives an error using JOptionPane.
-      - Unimplemented operations as "delete entry" or "modify entry" show a warning message.
-   2. Use predefined dialogs
-      - Use file chooser for importing and exporting csv.
-      - Use color chooser in "CustomView" window and "About" windows.
-   3. "Add entry" button opens a custom dialog (allows only one entry).
-
-
-4. Graphics
-   1. Custom class & `paint()` method.
-      - "Help/About" opens a window that contains a canvas panel where to draw.
-      - This canvas is an instance of a custom swing JPanel.
-   2. Dynamic Graphics. 
-      - The color of the drawings can be changed.
-   3. Explicit Repainting.
-      - When the color is selected the `repaint` method is called.
-
 ## Requirements Completed
 
 ### Window, components & events
@@ -99,7 +26,102 @@ windows
 - [x] (4.2) Set methods to change something that is being drawn.
 - [x] (4.3) Use the method repaint explicitly.
 
---- 
+
+## GUI ideas
+### Window, components & events
+   1. **Main windown menu bar**
+      - File
+        - Open sample
+        - Import from csv (partial implementation)
+        - Export in csv (partial implementation)
+        - Quit
+      - Edit
+        - Auto-save (no implementation)
+        - Save to cloud (no implementation)
+        - Undo (no implementation)
+        - Add entry
+        - Clear all entries
+      - View
+        - Wallet -> Radio button (All, Expenses, Income)
+        - Customize view
+      - Help
+        - Documentation (no implementation)
+        - About
+  
+   2. **Different layouts**
+      - `ShowAll` window uses BoxLayout.
+      - Both `mainWindow` (`mainPanel`) and `welcomeWindow` use AbsoluteLayout.
+
+> [!NOTE]
+> Resize is not allowed in some windows as it breaks the desired distribution of the components.
+
+   3. **Events**
+      - Many events are implemented in this project. Some of them are:
+        - `View/Wallet` radio buttons are synchronized with the tabbed pannel.
+        - `File/Open sample` adds some predefined enties to the tables.
+        - `File/Quit` exits the app.
+    
+   4. **Keyboard restrictions**
+      - Inside the `AddEntry` window:
+        - Only digits and one dot are allowed as amount.
+        - Only letters and numbers are allowed as tag.
+> [!NOTE]
+> Blank tag is allowed in in the text area, but not in the tables as it will be replaced by `<No Tag>`.
+  
+   5. **Components with variable number of elements**
+      - There are Dynamic tables inside each element (all/expenses/income) of the tabbed pannel.
+      - The tables are modified with the buttons on the left (Add, delete and Mod. Entry)
+      - Also modified with main menu `Edit/Add entry` and `Edit/Clear all entries`.
+
+> [!CAUTION]
+> Functionality of buttons delete and Mod. Entry is not implemented.
+
+### Multiple windows
+Secondary windows created are:
+- `ShowAllWindow`. Opened with the button `Show  All` in the main window.
+- `CustomViewWindow`. Opened with the menu bar in `View/Customize View` menu item.
+- `AboutWindow`. Opened with the menu bar in `Help/About` menu item.
+- `WelcomeWindow`. Displayes only once at the beginning of a session.
+
+
+   1. **Main updates secondary**
+      - `ShowAllWindow` contains the same tables as the main window (same tables model).
+      - `MainWindow` tabbed pane selection and `Menu/View/Wallet` radio buttons also affects `ShowAllWindow`.
+   2. **Secondary updates main**
+      - Tabbed pane selection in `ShowAllWIndow` also affects `MainWindow` tabbed pane and `Menu/View/Wallet` radio buttons.
+   3. **Secondary updates secondary**
+      - `CustomViewWindow` change tables color modifies the color of the tables in `MainWindow` and `ShowAllWindow`.
+   4. **Initial Window**
+      - `WelcomeWindow` is the first and only window shown until the `Begin` button is pressed.
+      - Once pressed `MainWindow` will appear and `WelcomeWindow` will not be accessible again.
+
+> [!CAUTION]
+> In `CustomViewWindow`, change color for background and buttons was not implemented. Only implemented for tables.
+
+
+### Dialogs
+   1. **Dialog with JOptionPane**
+      - `File/Import csv` and `File/Export csv` always gives an error using JOptionPane.
+      - Unimplemented operations show a warning message (as `Delete Entry`).
+   2. **Predefined dialogs**
+      - A file chooser is used for importing and exporting csv.
+      - A color chooser for changing colors in `CustomViewWindow` and `AboutWindow`.
+   3. **Custom dialog**
+      - `Add Entry` button opens a custom dialog that allows introducing an entry to the tables.
+
+
+### Graphics
+   1. **Custom class & `paint()` method**
+      - `AboutWindow` contains a canvas panel where to draw.
+      - This canvas is an instance of a custom `java.swing.JPanel` with its `paint()` method redefined.
+   2. **Use set methods**
+      - `setColor()` was used to change the color of the drawings.
+   3. **Explicit Repainting**
+      - When the color is selected the `repaint` method is called.
+  
+> [!NOTE]
+> Note that resizing will automaticly call the `repaint()` method.
+
 
 ## TODO list
 

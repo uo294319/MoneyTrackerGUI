@@ -65,6 +65,7 @@ public class ShowAllWindow extends javax.swing.JFrame {
 
         setMinimumSize(new java.awt.Dimension(225, 150));
         setPreferredSize(new java.awt.Dimension(400, 675));
+        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
         tabbedPane.setBackground(new java.awt.Color(187, 195, 164));
         tabbedPane.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -173,20 +174,7 @@ public class ShowAllWindow extends javax.swing.JFrame {
 
         tabbedPane.addTab("Expenses", tabbedPane_expenses_scroll);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(tabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(tabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE))
-        );
+        getContentPane().add(tabbedPane);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
