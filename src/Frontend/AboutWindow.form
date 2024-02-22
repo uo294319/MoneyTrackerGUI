@@ -137,7 +137,7 @@
             <Property name="columns" type="int" value="1"/>
             <Property name="rows" type="int" value="1"/>
             <Property name="tabSize" type="int" value="1"/>
-            <Property name="text" type="java.lang.String" value="This is a project made for Human-Computer Interaction course,&#xa;University of Oviedo by &#xc1;ngel Arr&#xf3;spide Marco.&#xa;"/>
+            <Property name="text" type="java.lang.String" value="This is a project made for Human-Computer Interaction course,&#xa;University of Oviedo by UO294319.&#xa;"/>
             <Property name="autoscrolls" type="boolean" value="false"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>

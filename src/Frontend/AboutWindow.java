@@ -74,7 +74,7 @@ public class AboutWindow extends javax.swing.JFrame {
         mainPanel_about.setColumns(1);
         mainPanel_about.setRows(1);
         mainPanel_about.setTabSize(1);
-        mainPanel_about.setText("This is a project made for Human-Computer Interaction course,\nUniversity of Oviedo by Ángel Arróspide Marco.\n");
+        mainPanel_about.setText("This is a project made for Human-Computer Interaction course,\nUniversity of Oviedo by UO294319.\n");
         mainPanel_about.setAutoscrolls(false);
         mainPanel_about.setBorder(null);
         mainPanel_about.setMaximumSize(new java.awt.Dimension(48, 18));

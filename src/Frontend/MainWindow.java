@@ -249,7 +249,7 @@ public class MainWindow extends javax.swing.JFrame {
         mainPanel_disclaimer.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         mainPanel_disclaimer.setRows(1);
         mainPanel_disclaimer.setTabSize(1);
-        mainPanel_disclaimer.setText("Computer-Human Interaction\nÁngel Arróspide Marco");
+        mainPanel_disclaimer.setText("Computer-Human Interaction\nUO294319");
         mainPanel_disclaimer.setAutoscrolls(false);
         mainPanel_disclaimer.setBorder(null);
         mainPanel_disclaimer.setMaximumSize(new java.awt.Dimension(48, 18));
